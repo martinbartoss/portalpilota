@@ -1,0 +1,14 @@
+{
+  "name": "af",
+  "version": "1.0.0",
+  "description": "portál pilota",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Martin Bartoš",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.69.5"
+  }
+}

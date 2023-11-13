@@ -1,0 +1,4023 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Adventurefly.eu - Portál pilota</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v6.0.0-beta2/css/all.css"
+    />
+    <!-- <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css"> -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css"
+    />
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/mdb5/3.10.1/compiled.min.css"> -->
+
+    <!-- <link rel="stylesheet" href="https://mdbootstrap.com/api/snippets/static/download/MDB5-Pro-Advanced_3.3.0/plugins/css/all.min.css"> -->
+    <!-- <link rel='stylesheet' href='https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/css/mdb5/fonts/roboto-subset.css?ver=3.9.0-update.5' type='text/css' media='all' /> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script/angular.min.js" charset="utf-8"></script>
+    <script src="script/angular.filter.js" charset="utf-8"></script>
+
+    <script src="script/xlsx.js"></script>
+
+    <script src="script/jquery-ui.custom.js" charset="utf-8"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"
+      type="text/javascript"
+    ></script>
+    <!-- <script src="script/bootstrap-datetimepicker.min.js"></script> -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"
+    ></script>
+
+    <script src="script/fileModule.js" charset="utf-8"></script>
+    <script src="script/ng.js" charset="utf-8" defer></script>
+    <script>
+      /*to prevent Firefox FOUC, this must be here*/
+      let FF_FOUC_FIX;
+    </script>
+
+    <link rel="stylesheet" href="css/lkmb.css" />
+  </head>
+  <body ng-app="ngApp" ng-controller="pnlCtrl" ng-cloak>
+    <div class="nav" ng-click="home(1);" role="button">
+      <!-- <div class="col d-flex align-items-center">
+          <img src="img/politniAkademie.png" width="340" height="89">
+        </div>
+        <div class="col d-flex justify-content-center">
+          <img src="img/adventuresEU.png"  width="161" height="102">
+        </div>
+        <div class="col d-flex justify-content-right align-items-center">
+          <img src="img/adventuresEUtext.png"  width="517" height="57">
+        </div> -->
+      <div class="nav__logo">
+        <img src="img/adventuresEUtext.png" />
+        <span class="nav__logo--text"> | Portál pilota</span>
+      </div>
+      <div class="icons">
+        <button type="button" class="btn btn--darkmode">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon__dark-mode"
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="M160 136c0-30.62 4.51-61.61 16-88C99.57 81.27 48 159.32 48 248c0 119.29 96.71 216 216 216 88.68 0 166.73-51.57 200-128-26.39 11.49-57.38 16-88 16-119.29 0-216-96.71-216-216z"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="32"
+            />
+          </svg>
+        </button>
+        <button type="button" class="btn btn--account">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon__account"
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="M258.9 48C141.92 46.42 46.42 141.92 48 258.9c1.56 112.19 92.91 203.54 205.1 205.1 117 1.6 212.48-93.9 210.88-210.88C462.44 140.91 371.09 49.56 258.9 48zm126.42 327.25a4 4 0 01-6.14-.32 124.27 124.27 0 00-32.35-29.59C321.37 329 289.11 320 256 320s-65.37 9-90.83 25.34a124.24 124.24 0 00-32.35 29.58 4 4 0 01-6.14.32A175.32 175.32 0 0180 259c-1.63-97.31 78.22-178.76 175.57-179S432 158.81 432 256a175.32 175.32 0 01-46.68 119.25z"
+            />
+            <path
+              d="M256 144c-19.72 0-37.55 7.39-50.22 20.82s-19 32-17.57 51.93C191.11 256 221.52 288 256 288s64.83-32 67.79-71.24c1.48-19.74-4.8-38.14-17.68-51.82C293.39 151.44 275.59 144 256 144z"
+            />
+          </svg>
+        </button>
+        <button type="button" class="btn btn--logout">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon__logout"
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="M304 336v40a40 40 0 01-40 40H104a40 40 0 01-40-40V136a40 40 0 0140-40h152c22.09 0 48 17.91 48 40v40M368 336l80-80-80-80M176 256h256"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="32"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <section class="gradient-form">
+      <div class="" ng-keyup="testKey($event)">
+        <!-- <pre>{{usr}}</pre> -->
+        <div ng-show="viewMode==1">
+          <div class="container">
+            <div class="login__div">
+              <div class="login__form">
+                <div class="card-body mt-3 p-md-5 mx-md-4">
+                  <form>
+                    <!-- <div ng-show="logged==false" class="form-floating d-grid gap-2 mb-3">
+                      <button ng-click="viewMode=1;" type="button" class="btn btn-outline-primary">Přihlášení</button>
+                    </div> -->
+
+                    <!-- <div class="form-floating mb-3">
+                      <input type='text' class="form-control" id='datetimepicker1' ng-model="selectedVEH.date" ng-change="updateSelectedVehDateTime('#datetimepicker1')"/>
+                    </div> -->
+
+                    <!-- <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text" id="kons-addon2">Ship date3: </span>
+                      </div>
+                      <div class="input-group-append date ng-scope" data-date="" data-date-format="dd.mm.yyyy" data-link-field="dtp_consShipDate" dtp-date-default="">
+                          <input type='text' class="form-control" id='datetimepicker1' />
+                      </div>
+                      <input type="text" style="display: none" id="dtp_consShipDate">
+                      <div class="input-group-append">
+                          <button class="btn btn-outline-danger" type="button" ng-click="">Create DL</button>
+                      </div>
+                    </div> -->
+
+                    <!-- <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                        <span class="input-group-text">0.00</span>
+                      </div>
+                      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"/>
+                    </div> -->
+                    <!--     
+                    <div class="input-group date form_datetime mb-3" style="width: 1%" data-date="" data-date-format="dd.mm.yyyy" data-link-field="dtp_selectedVehDate" dtp-date-time>
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Datum</span>
+                        <span class="input-group-text"><span class="fa fa-th"></span></span>
+                      </div>
+                      <input aria-describedby="basic-addon1" class="form-control cursorHand" style="width: 8em" ng-model="selectedVEH.date" ng-change="updateSelectedVehDateTime('#dtp_selectedVehDate')" type="text" readonly />
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2">Čas</span>
+                      </div>
+                      <input aria-describedby="basic-addon2" class="form-control" style="width: 6em" ng-model="selectedVEH.time" type="text" readonly />
+                    </div>
+                    <input type="text" style="display: none" id="dtp_selectedVehDate"/> -->
+
+                    <div ng-show="logged==false" class="form-floating">
+                      <input
+                        class="form-control"
+                        id="floatingInput"
+                        placeholder="name@example.com"
+                        ng-model="usr.e"
+                      />
+                      <label for="floatingInput">Emailová adresa</label>
+                    </div>
+                    <div ng-show="logged==false" class="form-floating mb-3">
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="floatingPassword"
+                        placeholder="Password"
+                        ng-model="usr.pwd"
+                      />
+                      <label for="floatingPassword">Heslo</label>
+                    </div>
+
+                    <div
+                      ng-show="logged==false"
+                      class="form-floating d-grid gap-2 mb-3"
+                      ng-click="login()"
+                    >
+                      <button type="button" class="btn btn-outline-primary">
+                        Přihlásit
+                      </button>
+                    </div>
+
+                    <div
+                      ng-show="usr.ret==0"
+                      class="form-floating d-grid gap-2 mb-3"
+                    >
+                      <span style="color: red">{{usr.msg}}</span>
+                    </div>
+
+                    <!-- <div ng-show="logged==false" class="form-floating d-grid gap-2">
+                      <button ng-click="viewMode=2;" type="button" class="btn btn-outline-primary">Registrace</button>
+                    </div> -->
+                    <div
+                      ng-show="logged==true"
+                      ng-click="logout();"
+                      class="form-floating d-grid gap-2 mb-3"
+                    >
+                      <button type="button" class="btn btn-outline-primary">
+                        Odhlásit
+                      </button>
+                    </div>
+                    <div
+                      ng-show="logged==true"
+                      ng-click="viewMode=2;"
+                      class="form-floating d-grid gap-2"
+                    >
+                      <button type="button" class="btn btn-outline-primary">
+                        Aktualizovat registrační údaje
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <!-- Mapa letiště -->
+              <!-- <div class="col d-none d-lg-block text-center">
+                <img src="img/mapaLetisteRWY{{RWY}}.png" alt="mapa letiste" />
+              </div> -->
+
+              <div
+                class="login__meteo-info"
+                ng-click="LKMB_getMeteoActual('IMLADB8')"
+                style="min-height: 100px"
+              >
+                <!-- <code>{{meteoInfoActual}}</code> -->
+                <div class="card-body">
+                  <table
+                    class="table table-sm table-bordered table-striped table-hover"
+                    style="width: 100%"
+                  >
+                    <thead>
+                      <tr>
+                        <th>Stanice:</th>
+                        <th>LKMB - AF</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Čas měření:</td>
+                        <td>{{meteoInfoActual.obsTimeLocal_hhmm}}</td>
+                      </tr>
+                      <tr>
+                        <td>Vítr směr:</td>
+                        <td>
+                          <span ng-show="meteoInfoActual.winddir=='VRB'"
+                            >VRB</span
+                          >
+                          <span ng-hide="meteoInfoActual.winddir=='VRB'"
+                            >{{meteoInfoActual.winddir}}°</span
+                          >
+                          <span ng-hide="lastWindDir==-1"
+                            >(avg: {{lastWindDirAVG}}°)</span
+                          >
+                        </td>
+                      </tr>
+                      <tr ng-if="usr.admin == 1">
+                        <td>Vítr rychlost:</td>
+                        <td>{{meteoInfoActual.windSpeed}} km/h</td>
+                      </tr>
+                      <tr>
+                        <td>Vítr rychlost:</td>
+                        <td>{{meteoInfoActual.windSpeed_MS}} m/s</td>
+                      </tr>
+                      <tr>
+                        <td>Nárazy větru:</td>
+                        <td>{{meteoInfoActual.windGust_MS}} m/s</td>
+                      </tr>
+                      <tr>
+                        <td>QNH - LKMB:</td>
+                        <td>{{meteoInfoActual.pressure_Round}} hPa</td>
+                      </tr>
+                      <tr>
+                        <td>Teplota:</td>
+                        <td>{{meteoInfoActual.temp}}°C</td>
+                      </tr>
+                      <tr>
+                        <td>Rosný bod:</td>
+                        <td>{{meteoInfoActual.dewpt}}°C</td>
+                      </tr>
+                      <tr>
+                        <td>Vlhkost:</td>
+                        <td>{{meteoInfoActual.humidity}}%</td>
+                      </tr>
+                      <tr ng-hide="meteoInfoActual.winddir=='VRB'" class="info">
+                        <td>Best RWY:</td>
+                        <th>{{RWY}}</th>
+                      </tr>
+                      <tr>
+                        <td colspan="2" style="color: red; font-weight: bold">
+                          <p class="mb-2">
+                            Údaje na této stránce jsou pouze informativní !!!
+                          </p>
+                          <p>
+                            Nezbavují pilota povinnosti zjistit si aktuální stav
+                            !!!
+                          </p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- homepage -->
+
+        <div
+          ng-show="viewMode==1"
+          class="row d-flex justify-content-center align-items-center h-100"
+        >
+          <div class="col-xl-10">
+            <div class="card rounded-3 text-black">
+              <div class="row g-0">
+                <div class="">
+                  <div class="row">
+                    <div class="text-left col-1 mt-1 mb-5 pb-1">
+                      <button
+                        type="button"
+                        class="btn btn--return"
+                        ng-click="home()"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon__return"
+                          viewBox="0 0 512 512"
+                        >
+                          <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="48"
+                            d="M328 112L184 256l144 144"
+                          />
+                        </svg>
+                        <span></span>
+                      </button>
+                    </div>
+                    <div class="text-center col-11 mt-1 mb-5 pb-1">
+                      <h1>Přihlášení</h1>
+                    </div>
+                  </div>
+                  <div class="card-body p-md-5 mx-md-4">
+                    <form>
+                      <div class="form-floating mb-3">
+                        <input
+                          class="form-control"
+                          id="floatingInput"
+                          placeholder="name@example.com"
+                          ng-model="usr.e"
+                        />
+                        <label for="floatingInput">Emailová adresa</label>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="floatingPassword"
+                          placeholder="Password"
+                          ng-model="usr.pwd"
+                        />
+                        <label for="floatingPassword">Heslo</label>
+                      </div>
+
+                      <div
+                        class="form-floating d-grid gap-2 mb-3"
+                        ng-click="login()"
+                      >
+                        <button type="button" class="btn btn-outline-primary">
+                          Přihlásit
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- login -->
+
+        <div ng-show="viewMode==2" class="flex">
+          <form class="dashboard__nav">
+            <button
+              ng-click="updateAccount(usr)"
+              type="button"
+              class="btn dashboard__link active"
+            >
+              Osobní údaje
+            </button>
+            <button
+              ng-click="showAccountStatus()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Stav konta
+            </button>
+            <!-- <button ng-click="resetPassword();" type="button" class="btn btn-outline-danger">Zapomenuté heslo</button> -->
+            <button
+              ng-click="createAccount();"
+              type="button"
+              class="btn dashboard__link"
+              ng-if="usr.admin == 1"
+            >
+              Vytvořit účet
+            </button>
+            <button
+              ng-if="usr.admin == 1"
+              ng-click="showUsersOverview()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Přehled uživatelů
+            </button>
+            <button
+              ng-click="showWeather();"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Počasí LKMB
+            </button>
+            <button
+              ng-click="showFlightEntry()"
+              type="button"
+              class="btn dashboard__link"
+              ng-hide="usr.admin == 1"
+            >
+              Zadání letu
+            </button>
+            <button
+              ng-click="showFlightsOverview('')"
+              ng-class="{'col-9':usr.admin != 1,'col-12':usr.admin == 1}"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled letů
+            </button>
+            <!-- <div ng-hide="usr.admin == 1" class="col-3">
+                        <button ng-click="showPaymentEntry()" type="button" class="btn btn-outline-success">Zadání platby</button>
+                      </div> -->
+            <button
+              ng-click="showPaymentsOverview('')"
+              ng-class="{'col-12':usr.admin != 1,'col-12':usr.admin == 1}"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled plateb
+            </button>
+            <button
+              ng-click="showReservationsOverview('')"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled rezervací
+            </button>
+
+            <button
+              ng-if="usr.admin == 1"
+              ng-click="showFailuresOverview()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Přehled závad
+            </button>
+          </form>
+
+          <div class="registration__div">
+            <h1>Registrace</h1>
+            <form>
+              <div class="mb-2 row">
+                <div class="col-4 form-floating">
+                  <input
+                    class="form-control"
+                    id="floatingRJ"
+                    placeholder="Jméno"
+                    ng-model="usrEdit.fn"
+                  />
+                  <label for="floatingRJ">Jméno</label>
+                </div>
+                <div class="col-4 form-floating">
+                  <input
+                    class="form-control"
+                    id="floatingRSN"
+                    placeholder="Příjmení"
+                    ng-model="usrEdit.sn"
+                  />
+                  <label for="floatingRSN">Příjmení</label>
+                </div>
+                <div class="col-4 form-floating">
+                  <input
+                    class="form-control"
+                    id="floatingRT"
+                    placeholder="Telefon"
+                    ng-model="usrEdit.phone"
+                  />
+                  <label for="floatingRT">Telefon</label>
+                </div>
+              </div>
+              <div class="form-floating mb-2">
+                <!-- <input class="form-control" id="floatingRE" placeholder="name@example.com" ng-model="usrEdit.e" ng-readonly="usrEdit.insert == 0">
+                        <label for="floatingRE">Emailová adresa</label> -->
+                <div class="input-group">
+                  <div class="form-floating flex-grow-1">
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="floatingRE"
+                      placeholder="name@example.com"
+                      ng-model="usrEdit.e"
+                      ng-readonly="usrEdit.insert == 0"
+                    />
+                    <label for="floatingRE">Emailová adresa</label>
+                  </div>
+                  <button
+                    ng-click="usrEdit.ChangePwd=!usrEdit.ChangePwd;"
+                    class="btn btn-outline-danger"
+                    type="button"
+                  >
+                    Změna hesla
+                  </button>
+                </div>
+              </div>
+              <div
+                class="mb-2 row"
+                ng-show="(usrEdit.insert == 1)||((usr.admin == 1)&&(usrEdit.ChangePwd==true))"
+              >
+                <div class="col-6 form-floating">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="floatingRP1"
+                    placeholder="Password"
+                    ng-model="usrEdit.pwd"
+                  />
+                  <label for="floatingRP1">Zadání hesla pro přihlášení</label>
+                </div>
+                <div class="col-6 form-floating">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="floatingRP2"
+                    placeholder="Password"
+                    ng-model="usrEdit.pwd2"
+                  />
+                  <label for="floatingRP2">Zopakovat heslo</label>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <div class="col-4 form-floating">
+                  <input
+                    class="form-control"
+                    id="floatingRCPP"
+                    placeholder="Číslo pilotního průkazu"
+                    ng-model="usrEdit.cpp"
+                  />
+                  <label for="floatingRCPP">Číslo pilotního průkazu</label>
+                </div>
+                <div class="col-4 form-floating">
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="floatingRPPP"
+                    placeholder="Platnost pilotního průkazu"
+                    ng-model="usrEdit.ppp_dt"
+                  />
+                  <label for="floatingRPPP">Platnost pilotního průkazu</label>
+                </div>
+                <div class="col-4 form-floating">
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="floatingRPLP"
+                    placeholder="Platnost lékařské prohlídky"
+                    ng-model="usrEdit.plp_dt"
+                  />
+                  <label for="floatingRPLP">Platnost lékařské prohlídky</label>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <div class="col-4 form-floating">
+                  <input
+                    class="form-control"
+                    id="floatingRCPS"
+                    placeholder="Číslo pojistné smlouvy"
+                    ng-model="usrEdit.cps"
+                  />
+                  <label for="floatingRCPS">Číslo pojistné smlouvy</label>
+                </div>
+                <div class="col-4 form-floating">
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="floatingRPPS"
+                    placeholder="Platnost pojistné smlouvy"
+                    ng-model="usrEdit.pps_dt"
+                  />
+                  <label for="floatingRPPS">Platnost pojistné smlouvy</label>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <div class="col-4 form-floating">
+                  <div class="dropdown" ng-if="usr.admin==1">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuAircraftCat"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Kategorie * {{usrEdit.AIRCRAFT_CATEGORY}}
+                    </button>
+                    <ul
+                      class="dropdown-menu scrollable-menu"
+                      aria-labelledby="dropdownMenuAircraftCat"
+                    >
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          href="#"
+                          ng-click="usrEdit.AIRCRAFT_CATEGORY = 'A';"
+                        >
+                          - A -
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          href="#"
+                          ng-click="usrEdit.AIRCRAFT_CATEGORY = 'B';"
+                        >
+                          - B -
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          href="#"
+                          ng-click="usrEdit.AIRCRAFT_CATEGORY = 'C';"
+                        >
+                          - C -
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          href="#"
+                          ng-click="usrEdit.AIRCRAFT_CATEGORY = 'D';"
+                        >
+                          - D -
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-4 form-floating">
+                  <input
+                    class="form-control"
+                    id="floatingQUAL"
+                    placeholder="Kvalifikace"
+                    ng-model="usrEdit.qual"
+                  />
+                  <label for="floatingQUAL">Kvalifikace</label>
+                </div>
+              </div>
+              <div class="form-floating mb-2" ng-if="usr.admin==1">
+                <input
+                  list="floatingDefPrices"
+                  class="form-control"
+                  id="floatingDefPrice"
+                  placeholder="0.0"
+                  ng-model="usrEdit.defaultPrice"
+                />
+                <label for="floatingDefPrice">Minutová sazba</label>
+                <datalist id="floatingDefPrices">
+                  <option
+                    ng-repeat="x in defaultPriceList"
+                    value="{{x}}"
+                  ></option>
+                </datalist>
+              </div>
+
+              <div
+                ng-show="usrEdit.insert == 1"
+                class="form-floating d-grid gap-2"
+                ng-click="registerNewPilot(usrEdit)"
+              >
+                <button type="button" class="btn btn-outline-primary">
+                  Vytvořit účet
+                </button>
+              </div>
+              <div
+                ng-show="usrEdit.insert == 0"
+                class="form-floating d-grid gap-2"
+                ng-click="updatePilot(usrEdit)"
+              >
+                <button type="button" class="btn btn-outline-primary">
+                  Aktualizovat záznam
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- registration -->
+
+        <div ng-show="viewMode==0" class="dashborad">
+          <form class="dashboard__nav">
+            <button
+              ng-click="updateAccount(usr)"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Osobní údaje
+            </button>
+            <button
+              ng-click="showAccountStatus()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Stav konta
+            </button>
+            <!-- <button ng-click="resetPassword();" type="button" class="btn btn-outline-danger">Zapomenuté heslo</button> -->
+            <button
+              ng-click="createAccount();"
+              type="button"
+              class="btn dashboard__link"
+              ng-if="usr.admin == 1"
+            >
+              Vytvořit účet
+            </button>
+            <button
+              ng-if="usr.admin == 1"
+              ng-click="showUsersOverview()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Přehled uživatelů
+            </button>
+            <button
+              ng-click="showWeather();"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Počasí LKMB
+            </button>
+            <button
+              ng-click="showFlightEntry()"
+              type="button"
+              class="btn dashboard__link"
+              ng-hide="usr.admin == 1"
+            >
+              Zadání letu
+            </button>
+            <button
+              ng-click="showFlightsOverview('')"
+              ng-class="{'col-9':usr.admin != 1,'col-12':usr.admin == 1}"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled letů
+            </button>
+            <!-- <div ng-hide="usr.admin == 1" class="col-3">
+                          <button ng-click="showPaymentEntry()" type="button" class="btn btn-outline-success">Zadání platby</button>
+                        </div> -->
+            <button
+              ng-click="showPaymentsOverview('')"
+              ng-class="{'col-12':usr.admin != 1,'col-12':usr.admin == 1}"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled plateb
+            </button>
+            <button
+              ng-click="showReservationsOverview('')"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled rezervací
+            </button>
+
+            <button
+              ng-if="usr.admin == 1"
+              ng-click="showFailuresOverview()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Přehled závad
+            </button>
+          </form>
+        </div>
+        <!-- sitemap -->
+
+        <div ng-show="viewMode==4" class="flex">
+          <form class="dashboard__nav">
+            <button
+              ng-click="updateAccount(usr)"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Osobní údaje
+            </button>
+            <button
+              ng-click="showAccountStatus()"
+              type="button"
+              class="btn dashboard__link active"
+            >
+              Stav konta
+            </button>
+            <!-- <button ng-click="resetPassword();" type="button" class="btn btn-outline-danger">Zapomenuté heslo</button> -->
+            <button
+              ng-click="createAccount();"
+              type="button"
+              class="btn dashboard__link"
+              ng-if="usr.admin == 1"
+            >
+              Vytvořit účet
+            </button>
+            <button
+              ng-if="usr.admin == 1"
+              ng-click="showUsersOverview()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Přehled uživatelů
+            </button>
+            <button
+              ng-click="showWeather();"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Počasí LKMB
+            </button>
+            <button
+              ng-click="showFlightEntry()"
+              type="button"
+              class="btn dashboard__link"
+              ng-hide="usr.admin == 1"
+            >
+              Zadání letu
+            </button>
+            <button
+              ng-click="showFlightsOverview('')"
+              ng-class="{'col-9':usr.admin != 1,'col-12':usr.admin == 1}"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled letů
+            </button>
+            <!-- <div ng-hide="usr.admin == 1" class="col-3">
+                        <button ng-click="showPaymentEntry()" type="button" class="btn btn-outline-success">Zadání platby</button>
+                      </div> -->
+            <button
+              ng-click="showPaymentsOverview('')"
+              ng-class="{'col-12':usr.admin != 1,'col-12':usr.admin == 1}"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled plateb
+            </button>
+            <button
+              ng-click="showReservationsOverview('')"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled rezervací
+            </button>
+
+            <button
+              ng-if="usr.admin == 1"
+              ng-click="showFailuresOverview()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Přehled závad
+            </button>
+          </form>
+
+          <div class="money-state__div">
+            <h1>Stav konta</h1>
+            <form>
+              <div class="mb-2 row">
+                <div class="col-5 offset-1 form-floating">
+                  <input
+                    class="form-control"
+                    id="floatingAccountCZK"
+                    placeholder="Account CZK"
+                    ng-model="usr.accountCZK"
+                    readonly
+                  />
+                  <label for="floatingAccountCZK">Stav konta (CZK)</label>
+                </div>
+                <div class="col-5 form-floating">
+                  <input
+                    class="form-control"
+                    id="floatingFlightMinutes"
+                    placeholder="Flight minutes"
+                    ng-model="usr.accountMinutes"
+                    readonly
+                  />
+                  <label for="floatingFlightMinutes">Letových minut</label>
+                </div>
+              </div>
+
+              <div
+                class="form-floating col-10 offset-1 d-grid gap-2 mb-3"
+                ng-click="refreshAccountStatus()"
+              >
+                <button type="button" class="btn btn-outline-primary">
+                  Aktualizovat
+                </button>
+              </div>
+            </form>
+
+            <div class="row">
+              <div class="text-center col-10 offset-1 mt-1 mb-5 pb-1">
+                <h4>Bankovní účet pro platby: ČSOB 257239607/0300</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- account status -->
+
+        <div ng-show="viewMode==5" class="flex">
+          <form class="dashboard__nav">
+            <button
+              ng-click="updateAccount(usr)"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Osobní údaje
+            </button>
+            <button
+              ng-click="showAccountStatus()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Stav konta
+            </button>
+            <!-- <button ng-click="resetPassword();" type="button" class="btn btn-outline-danger">Zapomenuté heslo</button> -->
+            <button
+              ng-click="createAccount();"
+              type="button"
+              class="btn dashboard__link"
+              ng-if="usr.admin == 1"
+            >
+              Vytvořit účet
+            </button>
+            <button
+              ng-if="usr.admin == 1"
+              ng-click="showUsersOverview()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Přehled uživatelů
+            </button>
+            <button
+              ng-click="showWeather();"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Počasí LKMB
+            </button>
+            <button
+              ng-click="showFlightEntry()"
+              type="button"
+              class="btn dashboard__link active"
+              ng-hide="usr.admin == 1"
+            >
+              Zadání letu
+            </button>
+            <button
+              ng-click="showFlightsOverview('')"
+              ng-class="{'col-9':usr.admin != 1,'col-12':usr.admin == 1}"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled letů
+            </button>
+            <!-- <div ng-hide="usr.admin == 1" class="col-3">
+                        <button ng-click="showPaymentEntry()" type="button" class="btn btn-outline-success">Zadání platby</button>
+                      </div> -->
+            <button
+              ng-click="showPaymentsOverview('')"
+              ng-class="{'col-12':usr.admin != 1,'col-12':usr.admin == 1}"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled plateb
+            </button>
+            <button
+              ng-click="showReservationsOverview('')"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled rezervací
+            </button>
+
+            <button
+              ng-if="usr.admin == 1"
+              ng-click="showFailuresOverview()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Přehled závad
+            </button>
+          </form>
+          <div class="col-10">
+            <div class="row g-0">
+              <div class="col-10 offset-1">
+                <div class="card-body p-md-5 mx-md-4">
+                  <h1>Zadání letu</h1>
+                  <form>
+                    <div class="mb-2 row" ng-if="usr.admin==1">
+                      <div class="col-12">
+                        <!-- <input class="form-control" id="floatingFlightEMAIL" placeholder="Email" ng-model="flight.USER_EMAIL" ng-readonly="usr.admin==0">
+                          <label for="floatingFlightEMAIL">Email</label> -->
+                        <div class="input-group">
+                          <div class="dropdown">
+                            <button
+                              ng-click="search.email = '';"
+                              class="btn btn-secondary dropdown-toggle"
+                              type="button"
+                              id="dropdownMenuFlightEMAIL"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
+                            >
+                              Výběr emailu zákazníka
+                            </button>
+                            <ul
+                              class="dropdown-menu scrollable-menu"
+                              aria-labelledby="dropdownMenuFlightEMAIL"
+                              ng-hide="flight.APPROVED==1"
+                            >
+                              <li
+                                ng-repeat="e in userEmails |filter: filterEmails"
+                              >
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  ng-click="flight.USER_EMAIL = e.e;flight.POSADKA = e.n;flight.MINUTE_PRICE = e.defaultPrice;flightUpdatePrice(flight);"
+                                  >{{e.e}} * {{e.n}}</a
+                                >
+                              </li>
+                            </ul>
+                          </div>
+                          <input
+                            class="form-control"
+                            id="floatingFlightEMAIL"
+                            placeholder="Email"
+                            ng-model="flight.USER_EMAIL"
+                            ng-readonly="(usr.admin==0)||(flight.APPROVED==1)"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mb-2 row">
+                      <div class="col-6 form-floating">
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="floatingFlightDatum"
+                          placeholder="Flight date"
+                          ng-model="flight.d_dt"
+                          ng-readonly="flight.APPROVED==1"
+                        />
+                        <label for="floatingFlightDatum">Datum letu</label>
+                      </div>
+                      <div class="col-6 form-floating">
+                        <div class="input-group">
+                          <div class="dropdown">
+                            <button
+                              class="btn btn-secondary dropdown-toggle"
+                              type="button"
+                              id="dropdownMenuImatrikulace"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
+                            >
+                              Výběr imatrikulace
+                            </button>
+                            <ul
+                              class="dropdown-menu scrollable-menu"
+                              aria-labelledby="dropdownMenuImatrikulace"
+                              ng-hide="flight.APPROVED==1"
+                            >
+                              <li ng-repeat="x in listAircraft">
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  ng-click="flight.imatrikulace = x.imatrikulace;"
+                                  >{{x.imatrikulace}}</a
+                                >
+                              </li>
+                              <!-- <a class="dropdown-item" href="#" ng-click="flight.imatrikulace = 'OK-BUI 74';">OK-BUI 74</a>
+                                <a class="dropdown-item" href="#" ng-click="flight.imatrikulace = 'OK-AUI 04';">OK-AUI 04</a>
+                                <a class="dropdown-item" href="#" ng-click="flight.imatrikulace = 'OK-YAI 14';">OK-YAI 14</a>
+                                <a class="dropdown-item" href="#" ng-click="flight.imatrikulace = 'OK-NUU 86';">OK-NUU 86</a> -->
+                            </ul>
+                          </div>
+                          <input
+                            class="form-control"
+                            ng-model="flight.imatrikulace"
+                            readonly
+                          />
+                        </div>
+                        <!-- <input class="form-control" id="floatingImatrikulace" placeholder="Imatrikulace" ng-model="flight.imatrikulace">
+                          <label for="floatingImatrikulace">Imatrikulace</label> -->
+                      </div>
+                    </div>
+                    <div class="mb-2 row">
+                      <div class="col-12 form-floating">
+                        <input
+                          class="form-control"
+                          id="floatingPosadka"
+                          placeholder="Posadka"
+                          ng-model="flight.POSADKA"
+                          ng-readonly="flight.APPROVED==1"
+                        />
+                        <label for="floatingPosadka">Posádka</label>
+                      </div>
+                    </div>
+                    <div class="mb-2 row">
+                      <div class="col-6 form-floating">
+                        <input
+                          class="form-control"
+                          id="floatingFlightTakeOff"
+                          placeholder="FlightTakeOff"
+                          ng-model="flight.takeoff"
+                          ng-readonly="flight.APPROVED==1"
+                        />
+                        <label for="floatingFlightTakeOff">Místo startu</label>
+                      </div>
+                      <div class="col-6 form-floating">
+                        <input
+                          class="form-control"
+                          id="floatingFlightLanding"
+                          placeholder="FlightLanding"
+                          ng-model="flight.landing"
+                          ng-readonly="flight.APPROVED==1"
+                        />
+                        <label for="floatingFlightLanding"
+                          >Místo přistání</label
+                        >
+                      </div>
+                    </div>
+
+                    <div class="mb-2 row">
+                      <div class="col-2 form-floating">
+                        <input
+                          class="form-control"
+                          id="floatingFlightStartsNumber"
+                          placeholder="FlightStartsNumber"
+                          ng-model="flight.startsNumber"
+                          ng-readonly="flight.APPROVED==1"
+                        />
+                        <label for="floatingFlightStartsNumber">Startů</label>
+                      </div>
+                      <div class="col-4 form-floating">
+                        <input
+                          class="form-control"
+                          id="floatingCounterBegin"
+                          placeholder="CounterBegin"
+                          ng-model="flight.counterBegin"
+                          ng-change="flightUpdateDuration(flight)"
+                          only-decimal
+                          ng-readonly="flight.APPROVED==1"
+                        />
+                        <label for="floatingCounterBegin">Počáteční stav</label>
+                      </div>
+                      <div class="col-4 form-floating">
+                        <input
+                          class="form-control"
+                          id="floatingCounterEnd"
+                          placeholder="CounterEnd"
+                          ng-model="flight.counterEnd"
+                          ng-change="flightUpdateDuration(flight)"
+                          only-decimal
+                          ng-readonly="flight.APPROVED==1"
+                        />
+                        <label for="floatingCounterEnd">Koncový stav</label>
+                      </div>
+                      <div class="col-2 form-floating">
+                        <input
+                          ng-if="usr.admin==1"
+                          class="form-control"
+                          id="floatingFlightTimeMinutes"
+                          placeholder="FlightTimeMinutes"
+                          ng-model="flight.duration"
+                          ng-change="flightUpdatePrice(flight)"
+                          ng-readonly="flight.APPROVED==1"
+                        />
+                        <input
+                          ng-if="usr.admin!=1"
+                          class="form-control"
+                          id="floatingFlightTimeMinutes"
+                          placeholder="FlightTimeMinutes"
+                          ng-model="flight.duration"
+                          readonly
+                        />
+                        <label for="floatingFlightTimeMinutes">Minuty</label>
+                      </div>
+                    </div>
+
+                    <div class="mb-2 row" ng-if="usr.admin==1">
+                      <div class="col-3 form-floating">
+                        <input
+                          list="floatingMinutePrices"
+                          class="form-control"
+                          id="floatingMinutePrice"
+                          placeholder="Minutová cena"
+                          ng-model="flight.MINUTE_PRICE"
+                          ng-change="flightUpdatePrice(flight)"
+                          ng-readonly="flight.APPROVED==1"
+                        />
+                        <label for="floatingMinutePrice">Minutová cena</label>
+                        <datalist id="floatingMinutePrices">
+                          <option
+                            ng-repeat="x in defaultPriceList"
+                            value="{{x}}"
+                          ></option>
+                        </datalist>
+                      </div>
+                      <div class="col-3 form-floating">
+                        <input
+                          class="form-control"
+                          id="floatingPrice"
+                          placeholder="Celková cena"
+                          ng-model="flight.PRICE"
+                          readonly
+                        />
+                        <label for="floatingPrice">Celková cena</label>
+                      </div>
+                    </div>
+
+                    <div class="mb-2 row">
+                      <div class="col-6 form-floating">
+                        <div class="input-group">
+                          <div class="dropdown">
+                            <button
+                              class="btn btn-secondary dropdown-toggle"
+                              type="button"
+                              id="dropdownMenuFlightTYPE"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
+                            >
+                              Výběr typu letu
+                            </button>
+                            <ul
+                              class="dropdown-menu scrollable-menu"
+                              aria-labelledby="dropdownMenuFlightTYPE"
+                              ng-hide="flight.APPROVED==1"
+                            >
+                              <li>
+                                <!-- <a class="dropdown-item" href="#" ng-click="flight.flightType = 'půjčovna';">půjčovna</a>
+                                  <a class="dropdown-item" href="#" ng-click="flight.flightType = 'výcvikový let s instruktorem';">výcvikový let s instruktorem</a>
+                                  <a class="dropdown-item" href="#" ng-click="flight.flightType = 'kondiční s instruktorem';">kondiční s instruktorem</a>
+                                  <a class="dropdown-item" href="#" ng-click="flight.flightType = 'pilotní zkoušky s inspektorem';">pilotní zkoušky s inspektorem</a>
+                                  <a class="dropdown-item" href="#" ng-click="flight.flightType = 'servisní let';">servisní let</a>
+                                  <a class="dropdown-item" href="#" ng-click="flight.flightType = 'zálet';">zálet</a>
+                                  <a class="dropdown-item" href="#" ng-click="flight.flightType = 'vyhlídkový let';">vyhlídkový let</a> -->
+
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  ng-click="flight.flightType = 'půjčovna';"
+                                  >půjčovna</a
+                                >
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  ng-click="flight.flightType = 'výcvikový let s instruktorem';"
+                                  >výcvikový let s instruktorem</a
+                                >
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  ng-click="flight.flightType = 'kondiční s instruktorem';"
+                                  >kondiční s instruktorem</a
+                                >
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  ng-click="flight.flightType = 'pilotní zkoušky s inspektorem';"
+                                  >pilotní zkoušky s inspektorem</a
+                                >
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  ng-click="flight.flightType = 'vleky AK';"
+                                  >vleky AK</a
+                                >
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  ng-click="flight.flightType = 'placený let';"
+                                  >placený let</a
+                                >
+                                <a
+                                  ng-if="usr.admin == 1"
+                                  class="dropdown-item"
+                                  href="#"
+                                  ng-click="flight.flightType = 'servisní let';"
+                                  >servisní let</a
+                                >
+                                <a
+                                  ng-if="usr.admin == 1"
+                                  class="dropdown-item"
+                                  href="#"
+                                  ng-click="flight.flightType = 'zálet';"
+                                  >zálet</a
+                                >
+                                <a
+                                  ng-if="usr.admin == 1"
+                                  class="dropdown-item"
+                                  href="#"
+                                  ng-click="flight.flightType = 'vyhlídkový let';"
+                                  >vyhlídkový let</a
+                                >
+                              </li>
+                            </ul>
+                          </div>
+                          <input
+                            class="form-control"
+                            id="floatingFlightType"
+                            ng-model="flight.flightType"
+                            readonly
+                          />
+                        </div>
+                      </div>
+                      <div class="col-6 form-floating">
+                        <input
+                          class="form-control"
+                          id="floatingFlightNote"
+                          placeholder="Poznámka"
+                          ng-model="flight.note"
+                          ng-readonly="flight.APPROVED==1"
+                        />
+                        <label for="floatingFlightNote">Poznámka</label>
+                      </div>
+                    </div>
+                  </form>
+
+                  <div class="mb-2 row">
+                    <div
+                      class="form-floating d-grid gap-2 mb-3 col-6"
+                      ng-click="LKMB_flight(flight)"
+                      ng-if="flight.APPROVED==0"
+                    >
+                      <button type="button" class="btn btn-outline-primary">
+                        Uložit
+                      </button>
+                    </div>
+                    <div
+                      class="form-floating d-grid gap-2 mb-3 col-6"
+                      ng-click="showFlightsOverviewSimple();"
+                    >
+                      <button type="button" class="btn btn-info">Zavřít</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- flight entry -->
+
+        <div ng-show="viewMode==6" class="flex">
+          <form class="dashboard__nav">
+            <button
+              ng-click="updateAccount(usr)"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Osobní údaje
+            </button>
+            <button
+              ng-click="showAccountStatus()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Stav konta
+            </button>
+            <!-- <button ng-click="resetPassword();" type="button" class="btn btn-outline-danger">Zapomenuté heslo</button> -->
+            <button
+              ng-click="createAccount();"
+              type="button"
+              class="btn dashboard__link"
+              ng-if="usr.admin == 1"
+            >
+              Vytvořit účet
+            </button>
+            <button
+              ng-if="usr.admin == 1"
+              ng-click="showUsersOverview()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Přehled uživatelů
+            </button>
+            <button
+              ng-click="showWeather();"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Počasí LKMB
+            </button>
+            <button
+              ng-click="showFlightEntry()"
+              type="button"
+              class="btn dashboard__link"
+              ng-hide="usr.admin == 1"
+            >
+              Zadání letu
+            </button>
+            <button
+              ng-click="showFlightsOverview('')"
+              ng-class="{'col-9':usr.admin != 1,'col-12':usr.admin == 1}"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled letů
+            </button>
+            <!-- <div ng-hide="usr.admin == 1" class="col-3">
+                      <button ng-click="showPaymentEntry()" type="button" class="btn btn-outline-success">Zadání platby</button>
+                    </div> -->
+            <button
+              ng-click="showPaymentsOverview('')"
+              ng-class="{'col-12':usr.admin != 1,'col-12':usr.admin == 1}"
+              type="button"
+              class="btn dashboard__link active form-control"
+            >
+              Přehled plateb
+            </button>
+            <button
+              ng-click="showReservationsOverview('')"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled rezervací
+            </button>
+
+            <button
+              ng-if="usr.admin == 1"
+              ng-click="showFailuresOverview()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Přehled závad
+            </button>
+          </form>
+
+          <div>
+            <div>
+              <div>
+                <button
+                  ng-if="usr.admin == 1"
+                  class="btn btn-outline-primary"
+                  ng-click="exportToExcel('#tblPayments', 'Přehled plateb');"
+                  type="button"
+                >
+                  <span
+                    class="far fa-file-excel"
+                    style="margin-right: 10px"
+                  ></span
+                  ><span></span>Export
+                </button>
+              </div>
+              <div
+                role="button"
+                class="text-center"
+                ng-click="refreshPaymentsOverview()"
+              ></div>
+            </div>
+
+            <div>
+              <table id="tblPayments" class="payments__table">
+                <thead class="table-primary">
+                  <tr>
+                    <th style="width: 3%">
+                      <button
+                        ng-if="usr.admin == 1"
+                        type="button button-xs"
+                        class="btn btn-success"
+                        ng-click="showPaymentEntry()"
+                      >
+                        <span class="fa fa-plus"></span>
+                      </button>
+                    </th>
+                    <th style="width: 3%">#</th>
+                    <th style="width: 3%">Datum</th>
+                    <th style="width: 10%">Email</th>
+                    <th style="width: 10%">Jméno a příjmení</th>
+                    <th style="width: 10%">Částka</th>
+                    <th style="width: 10%">Forma platby</th>
+                    <th style="width: 10%">Doklad</th>
+                    <!-- <th>Stav konta</th> -->
+                  </tr>
+                  <tr class="noxls">
+                    <td colspan="3">
+                      <div class="input-group">
+                        <div class="dropdown">
+                          <button
+                            class="btn btn-xs btn-secondary dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuPaymentDatum"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          >
+                            Výběr {{filterMonth.mn}} {{filterMonth.yy}}
+                          </button>
+                          <ul
+                            class="dropdown-menu scrollable-menu"
+                            aria-labelledby="dropdownMenuPaymentDatum"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                href="#"
+                                ng-click="refreshPaymentsOverview('Všechna data', 0, 0)"
+                              >
+                                - Nahrát vše -
+                              </a>
+                            </li>
+                            <li><hr /></li>
+                            <li ng-repeat="e in monthsFilter">
+                              <a
+                                class="dropdown-item"
+                                href="#"
+                                ng-click="refreshPaymentsOverview(e.mn, e.mm, e.yy)"
+                                >{{e.mn}} * {{e.yy}}</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </td>
+                    <td colspan="5">
+                      <input
+                        class="form-control"
+                        ng-model="search.e"
+                        ng-change="updatePaymentsTotalsFiltered()"
+                      />
+                    </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    ng-repeat="x in payments | filter: filterPayments | orderBy : ['-dYMD']"
+                  >
+                    <td>
+                      <button
+                        type="button button-xs"
+                        ng-if="usr.admin == 1"
+                        class="btn btn-primary"
+                        ng-click="showPaymentEntry(x)"
+                      >
+                        <span class="fa fa-edit"></span>
+                      </button>
+                    </td>
+                    <td>{{$index + 1}}</td>
+                    <td>{{x.d}}</td>
+                    <td>{{x.USER_EMAIL}}</td>
+                    <td>{{x.USER_N}}</td>
+                    <td style="text-align: right">{{x.AMOUNT_F}}</td>
+                    <td>{{x.PAYMENT_TYPE}}</td>
+                    <td>{{x.DOCUMENT}}</td>
+                    <!-- <td>{{x.BALANCE}}</td> -->
+                  </tr>
+                  <tr style="min-height: 10px"></tr>
+                  <tr
+                    ng-show="search.e == ''"
+                    style="background-color: cornflowerblue"
+                    ng-repeat="x in paymentsTotal"
+                  >
+                    <td style="white-space: nowrap"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: right">{{x.AMOUNT_F}}</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr
+                    ng-hide="search.e == ''"
+                    style="background-color: cornflowerblue"
+                    ng-repeat="x in paymentsTotal"
+                  >
+                    <td style="white-space: nowrap"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: right">{{x.AMOUNT_F_FILTERED}}</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- payments overview -->
+
+        <div ng-show="viewMode==7" class="flex">
+          <form class="dashboard__nav">
+            <button
+              ng-click="updateAccount(usr)"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Osobní údaje
+            </button>
+            <button
+              ng-click="showAccountStatus()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Stav konta
+            </button>
+            <!-- <button ng-click="resetPassword();" type="button" class="btn btn-outline-danger">Zapomenuté heslo</button> -->
+            <button
+              ng-click="createAccount();"
+              type="button"
+              class="btn dashboard__link"
+              ng-if="usr.admin == 1"
+            >
+              Vytvořit účet
+            </button>
+            <button
+              ng-if="usr.admin == 1"
+              ng-click="showUsersOverview()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Přehled uživatelů
+            </button>
+            <button
+              ng-click="showWeather();"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Počasí LKMB
+            </button>
+            <button
+              ng-click="showFlightEntry()"
+              type="button"
+              class="btn dashboard__link"
+              ng-hide="usr.admin == 1"
+            >
+              Zadání letu
+            </button>
+            <button
+              ng-click="showFlightsOverview('')"
+              ng-class="{'col-9':usr.admin != 1,'col-12':usr.admin == 1}"
+              type="button"
+              class="btn dashboard__link active form-control"
+            >
+              Přehled letů
+            </button>
+            <!-- <div ng-hide="usr.admin == 1" class="col-3">
+                    <button ng-click="showPaymentEntry()" type="button" class="btn btn-outline-success">Zadání platby</button>
+                  </div> -->
+            <button
+              ng-click="showPaymentsOverview('')"
+              ng-class="{'col-12':usr.admin != 1,'col-12':usr.admin == 1}"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled plateb
+            </button>
+            <button
+              ng-click="showReservationsOverview('')"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled rezervací
+            </button>
+
+            <button
+              ng-if="usr.admin == 1"
+              ng-click="showFailuresOverview()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Přehled závad
+            </button>
+          </form>
+          <div>
+            <div>
+              <div class="row g-0">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="text-left col-1 mt-1 mb-5 pb-1"></div>
+                    <div
+                      role="button"
+                      class="text-center col-11 mt-1 mb-5 pb-1"
+                      ng-click="refreshFlightsOverview()"
+                    ></div>
+                  </div>
+
+                  <div class="flights__div">
+                    <h1>Přehled letů</h1>
+                    <div class="row">
+                      <div class="pull-left">
+                        <div class="col-6">
+                          <div class="input-group" style="margin-bottom: 10px">
+                            <span class="input-group-btn">
+                              <label
+                                ng-if="usr.admin == 1"
+                                class="btn btn-info btn-bs-file"
+                                type="button"
+                                ng-file-select
+                              >
+                                <span
+                                  class="fas fa-folder-open"
+                                  style="margin-right: 10px"
+                                ></span>
+                                <span>Nahrát soubor</span>
+                                <input type="file" style="display: none" />
+                              </label>
+                              <button
+                                ng-show="file.name.length > 0"
+                                class="btn"
+                                ng-class="{'btn-outline-primary': !(showFileContent == 1), 'btn-primary': showFileContent == 1}"
+                                ng-click="showFileContent = 1;"
+                                type="button"
+                              >
+                                <span
+                                  class="fa"
+                                  ng-class="{'fa-unchecked': !(showFileContent == 1), 'fa-check': showFileContent == 1}"
+                                  style="margin-right: 10px"
+                                ></span
+                                ><span ng-bind="file.name"></span>
+                              </button>
+                              <button
+                                class="btn"
+                                ng-class="{'btn-outline-primary': !(showFileContent == 0), 'btn-primary': showFileContent == 0}"
+                                ng-click="showFileContent = 0"
+                                type="button"
+                              >
+                                <span
+                                  class="fa"
+                                  ng-class="{'fa-unchecked': !(showFileContent == 0), 'fa-check': showFileContent == 0}"
+                                  style="margin-right: 10px"
+                                ></span
+                                ><span></span>Přehled
+                              </button>
+                              <button
+                                class="btn btn-outline-primary"
+                                ng-click="exportToExcel('#tblFlights', 'Přehled letů');"
+                                type="button"
+                              >
+                                <span
+                                  class="far fa-file-excel"
+                                  style="margin-right: 10px"
+                                ></span
+                                ><span></span>Export
+                              </button>
+                            </span>
+                            <!-- <div class="input-group date form_date" style="width: 1%" data-date="" data-date-format="dd.mm.yyyy" data-link-field="dtp_trucksBeginD" dtp-date>
+                                    <span ng-show="true" class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                    <input id="input_trucksBeginD" class="form-control cursorHand" style="width: 10em" ng-model="trucksBegin" ng-change="updateDate('#dtp_trucksBeginD')" type="text" readonly>
+                                </div>
+                                <div class="input-group date form_year" style="width: 1%" data-date="" data-date-format="yyyy" data-link-field="dtp_DDDSvatky" dtp-year>
+                                    <span ng-show="true" class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                    <input id="input_DDDSvatky" class="form-control cursorHand" style="width: 10em" ng-model="DDDSvatkyYear" type="text" ng-change="updateDate('#dtp_DDDSvatky')" readonly>
+                                </div>
+                                <input type="text" style="display: none" id="dtp_trucksBeginD" />
+                                <input type="text" style="display: none" id="dtp_DDDSvatky" /> -->
+                          </div>
+                        </div>
+                      </div>
+                      <div class="pull-right">
+                        <!-- <div class="col-6">
+                            <pre>begin: {{DDDSvatkyYear}}</pre>
+                        </div> -->
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <table
+                      ng-if="usr.admin == 1"
+                      id="tblFlightsImport"
+                      class="table table-bordered table-striped table-hover"
+                      ng-show="showFileContent==1"
+                    >
+                      <thead class="table-primary">
+                        <tr>
+                          <th style="width: 33%">
+                            <button
+                              type="button button-sm"
+                              class="btn btn-primary"
+                              ng-click="LKMB_flight_Import_All();"
+                            >
+                              Uložit vše
+                            </button>
+                          </th>
+                          <th style="width: 33%">#</th>
+                          <th>Datum</th>
+                          <th>Imatrikulace</th>
+                          <th>Trasa</th>
+                          <th>Posádka</th>
+                          <th>Délka letu</th>
+                          <th>Poznámka</th>
+                          <th>Platba</th>
+                          <th>Sazba</th>
+                          <th>Row</th>
+                        </tr>
+                        <tr>
+                          <td colspan="11"></td>
+                          <!-- <td colspan="11">
+                          <input class="form-control" ng-model="search.e">
+                        </td> -->
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          ng-repeat="x in xlsJSON[0].rows | orderBy : ['imatrikulace', 'Datum']"
+                        >
+                          <td>
+                            <button
+                              type="button button-sm"
+                              class="btn"
+                              ng-class="{'btn-outline-primary': ((x.OK+x.ERR)==0), 'btn-success': (x.OK==1), 'btn-danger': (x.ERR==1)}"
+                              ng-click="LKMB_flight_Import(x);"
+                            >
+                              Uložit
+                            </button>
+                          </td>
+                          <td>{{$index + 1}}</td>
+                          <td>{{x.datum}}</td>
+                          <td>{{x.imatrikulace}}</td>
+                          <td>{{x.trasa}}</td>
+                          <td>{{x.posadka}}</td>
+                          <td>{{x.DL_MM}}</td>
+                          <td>{{x.poznamka}}</td>
+                          <td>{{x.CZK}}</td>
+                          <td>{{x.sazba}}</td>
+                          <td>{{x.jsonSRC}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <table
+                      id="tblFlights"
+                      class="table table-bordered table-striped table-hover"
+                      ng-show="showFileContent==0"
+                    >
+                      <thead class="table-primary">
+                        <tr>
+                          <th class="noxls" style="width: 10%">
+                            <button
+                              type="button button-xs"
+                              class="btn btn-primary"
+                              ng-click="showFlightEntry()"
+                            >
+                              <span class="fa fa-plus"></span>
+                            </button>
+                          </th>
+                          <th style="width: 10%">#</th>
+                          <th style="width: 10%">Imatrikulace</th>
+                          <th style="width: 33%">Email</th>
+                          <th style="width: 33%">Datum</th>
+                          <th>Vzlet</th>
+                          <th>Přistání</th>
+                          <th style="width: 33%">Posádka</th>
+                          <th colspan="3" style="width: 33%">Let</th>
+                          <!-- <th style="width: 33%;">Počet startů</th> -->
+                          <th colspan="2" style="width: 33%">Celkem</th>
+                          <th style="width: 33%">Typ letu</th>
+                          <th>Poznámka</th>
+                          <th style="width: 33%">Sazba</th>
+                          <th style="width: 33%">Cena</th>
+                          <th style="width: 33%"></th>
+                        </tr>
+                        <tr class="noxls">
+                          <td colspan="3">
+                            <div class="input-group">
+                              <div class="dropdown">
+                                <button
+                                  class="btn btn-xs btn-secondary dropdown-toggle"
+                                  type="button"
+                                  id="dropdownMenuFlightDatum"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"
+                                >
+                                  Výběr {{filterMonth.mn}} {{filterMonth.yy}}
+                                </button>
+                                <ul
+                                  class="dropdown-menu scrollable-menu"
+                                  aria-labelledby="dropdownMenuFlightDatum"
+                                >
+                                  <li>
+                                    <a
+                                      class="dropdown-item"
+                                      href="#"
+                                      ng-click="refreshFlightsOverview('Všechna data', 0, 0)"
+                                    >
+                                      - Nahrát vše -
+                                    </a>
+                                  </li>
+                                  <li><hr /></li>
+                                  <li ng-repeat="e in monthsFilter">
+                                    <a
+                                      class="dropdown-item"
+                                      href="#"
+                                      ng-click="refreshFlightsOverview(e.mn, e.mm, e.yy)"
+                                      >{{e.mn}} * {{e.yy}}</a
+                                    >
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </td>
+                          <td colspan="5">
+                            <input
+                              class="form-control"
+                              ng-model="search.e"
+                              ng-change="updateFlightsTotalsFiltered()"
+                            />
+                          </td>
+                          <td>hh</td>
+                          <td>mm</td>
+                          <td>startů</td>
+                          <td>hodin</td>
+                          <td>startů</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          ng-repeat="x in flights | filter: filterFlights | orderBy : ['-dYMD', 'imatrikulace']"
+                        >
+                          <td class="noxls" style="white-space: nowrap">
+                            <button
+                              type="button button-xs"
+                              ng-if="(x.APPROVED == 1)"
+                              class="btn btn-primary"
+                              ng-click="showFlightEntry(x)"
+                            >
+                              <span class="fa fa-info-circle"></span>
+                            </button>
+                            <button
+                              type="button button-xs"
+                              ng-if="(x.APPROVED == 0)"
+                              class="btn btn-primary"
+                              ng-click="showFlightEntry(x)"
+                            >
+                              <span class="fa fa-edit"></span>
+                            </button>
+                            <button
+                              type="button button-xs"
+                              class="btn btn-info"
+                              ng-click="showFlightEntry_Copy(x)"
+                            >
+                              <span class="fa fa-copy"></span>
+                            </button>
+                            <button
+                              type="button button-xs"
+                              ng-if="(x.APPROVED == 0)"
+                              class="btn btn-danger"
+                              ng-click="showFlightDeleteQuestion(x)"
+                            >
+                              <span class="fa fa-trash-alt"></span>
+                            </button>
+                          </td>
+                          <td style="white-space: nowrap">
+                            <span
+                              style="margin-right: 5px"
+                              ng-if="x.INSERTED_BY=='EXCEL'"
+                              class="fa fa-file-excel"
+                            ></span
+                            ><span
+                              style="margin-right: 5px"
+                              ng-if="x.INSERTED_BY=='USR'"
+                              class="fa fa-user"
+                            ></span
+                            ><span
+                              style="margin-right: 5px"
+                              ng-if="x.INSERTED_BY=='ADM'"
+                              class="fa fa-user-cog"
+                            ></span
+                            >{{$index + 1}}
+                          </td>
+                          <td>{{x.imatrikulace}}</td>
+                          <td>{{x.USER_EMAIL}}</td>
+                          <td>{{x.d}}</td>
+                          <td>{{x.takeoff}}</td>
+                          <td>{{x.landing}}</td>
+                          <td style="white-space: nowrap">{{x.POSADKA}}</td>
+                          <!-- <td>{{x.durationHHMM}}</td> -->
+                          <td>{{x.durationHH}}</td>
+                          <td>{{x.durationMM}}</td>
+                          <td>{{x.startsNumber}}</td>
+                          <td>{{x.hoursNumber_AGG}}</td>
+                          <td>{{x.startsNumber_AGG}}</td>
+                          <td>{{x.flightType}}</td>
+                          <td>{{x.note}}</td>
+                          <td>{{x.MINUTE_PRICE}}</td>
+                          <td>{{x.PRICE_F}}</td>
+                          <td style="white-space: nowrap">
+                            <button
+                              type="button button-xs"
+                              ng-if="(usr.admin == 1)&&(x.APPROVED == 0)"
+                              class="btn btn-default"
+                              ng-click="LKMB_flight_approve(x, 1)"
+                            >
+                              <span
+                                class="fa fa-regular fa-circle-xmark"
+                              ></span>
+                            </button>
+                            <button
+                              type="button button-xs"
+                              ng-if="(usr.admin == 1)&&(x.APPROVED == 1)"
+                              class="btn btn-success"
+                              ng-click="LKMB_flight_approve(x, 0)"
+                            >
+                              <span class="fa fa-check"></span>
+                            </button>
+                          </td>
+                        </tr>
+                        <tr style="min-height: 10px"></tr>
+                        <tr
+                          ng-show="search.e == ''"
+                          style="background-color: cornflowerblue"
+                          ng-repeat="x in flightsTotal"
+                        >
+                          <td class="noxls" style="white-space: nowrap"></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td style="white-space: nowrap"></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <!-- <td>{{x.durationHHMM}}</td> -->
+                          <td>{{x.durationHH}}</td>
+                          <td>{{x.durationMM}}</td>
+                          <td>{{x.startsNumber}}</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td>{{x.PRICE_F}}</td>
+                          <td style="white-space: nowrap"></td>
+                        </tr>
+                        <tr
+                          ng-hide="search.e == ''"
+                          style="background-color: cornflowerblue"
+                          ng-repeat="x in flightsTotal"
+                        >
+                          <td class="noxls" style="white-space: nowrap"></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td style="white-space: nowrap"></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <!-- <td>{{x.durationHHMM_FILTERED}}</td> -->
+                          <td>{{x.durationHH_FILTERED}}</td>
+                          <td>{{x.durationMM_FILTERED}}</td>
+                          <td>{{x.startsNumber_FILTERED}}</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td>{{x.PRICE_F_FILTERED}}</td>
+                          <td style="white-space: nowrap"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- flights overview -->
+
+        <div ng-show="viewMode==8" class="flex">
+          <form class="dashboard__nav">
+            <button
+              ng-click="updateAccount(usr)"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Osobní údaje
+            </button>
+            <button
+              ng-click="showAccountStatus()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Stav konta
+            </button>
+            <!-- <button ng-click="resetPassword();" type="button" class="btn btn-outline-danger">Zapomenuté heslo</button> -->
+            <button
+              ng-click="createAccount();"
+              type="button"
+              class="btn dashboard__link"
+              ng-if="usr.admin == 1"
+            >
+              Vytvořit účet
+            </button>
+            <button
+              ng-if="usr.admin == 1"
+              ng-click="showUsersOverview()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Přehled uživatelů
+            </button>
+            <button
+              ng-click="showWeather();"
+              type="button"
+              class="btn dashboard__link active"
+            >
+              Počasí LKMB
+            </button>
+            <button
+              ng-click="showFlightEntry()"
+              type="button"
+              class="btn dashboard__link"
+              ng-hide="usr.admin == 1"
+            >
+              Zadání letu
+            </button>
+            <button
+              ng-click="showFlightsOverview('')"
+              ng-class="{'col-9':usr.admin != 1,'col-12':usr.admin == 1}"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled letů
+            </button>
+            <!-- <div ng-hide="usr.admin == 1" class="col-3">
+                  <button ng-click="showPaymentEntry()" type="button" class="btn btn-outline-success">Zadání platby</button>
+                </div> -->
+            <button
+              ng-click="showPaymentsOverview('')"
+              ng-class="{'col-12':usr.admin != 1,'col-12':usr.admin == 1}"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled plateb
+            </button>
+            <button
+              ng-click="showReservationsOverview('')"
+              type="button"
+              class="btn dashboard__link form-control"
+            >
+              Přehled rezervací
+            </button>
+
+            <button
+              ng-if="usr.admin == 1"
+              ng-click="showFailuresOverview()"
+              type="button"
+              class="btn dashboard__link"
+            >
+              Přehled závad
+            </button>
+          </form>
+
+          <div class="weather__div">
+            <h1>Počasí</h1>
+            <div>
+              <div class="col-4" style="min-height: 100px">
+                <!-- <code>{{meteoInfoActual}}</code> -->
+                <div class="card-body">
+                  <!-- Stanice :              LKMB
+    Čas měření:        16:40   16.01.2022           "obsTimeLocal":"2022-01-16 16:48:58",
+    Vítr směr:           195°                                       "winddir":195,
+    Vítr rychlost:     5 m/s                                    "windSpeed":6,
+    Nárazy větru:    7 m/s                                    "windGust":7,
+    QNH - LKMB:     1023 hPa                             "pressure":1022.82,  (zaokrouhleno na celé hPa)
+    Teplota:               -1°C                                      "temp":-1,
+    Rosný bod:        -2°C                                       "dewpt":-2,
+    Vlhkost:               86%                                       "humidity":96, -->
+                  <table
+                    class="table table-sm table-bordered table-striped table-hover"
+                    style="width: 100%"
+                  >
+                    <thead>
+                      <tr>
+                        <th>Stanice:</th>
+                        <th>LKMB</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Čas měření:</td>
+                        <td>{{meteoInfoActual.obsTimeLocal_hhmm}}</td>
+                      </tr>
+                      <tr>
+                        <td>Vítr směr:</td>
+                        <td>
+                          <span ng-show="meteoInfoActual.winddir=='VRB'"
+                            >VRB</span
+                          >
+                          <span ng-hide="meteoInfoActual.winddir=='VRB'"
+                            >{{meteoInfoActual.winddir}}°</span
+                          >
+                          <span ng-hide="lastWindDir==-1"
+                            >(avg: {{lastWindDirAVG}}°)</span
+                          >
+                        </td>
+                      </tr>
+                      <tr ng-if="usr.admin == 1">
+                        <td>Vítr rychlost:</td>
+                        <td>{{meteoInfoActual.windSpeed}} km/h</td>
+                      </tr>
+                      <tr>
+                        <td>Vítr rychlost:</td>
+                        <td>{{meteoInfoActual.windSpeed_MS}} m/s</td>
+                      </tr>
+                      <tr>
+                        <td>Nárazy větru:</td>
+                        <td>{{meteoInfoActual.windGust_MS}} m/s</td>
+                      </tr>
+                      <tr>
+                        <td>QNH - LKMB:</td>
+                        <td>{{meteoInfoActual.pressure_Round}} hPa</td>
+                      </tr>
+                      <tr>
+                        <td>Teplota:</td>
+                        <td>{{meteoInfoActual.temp}}°C</td>
+                      </tr>
+                      <tr>
+                        <td>Rosný bod:</td>
+                        <td>{{meteoInfoActual.dewpt}}°C</td>
+                      </tr>
+                      <tr>
+                        <td>Vlhkost:</td>
+                        <td>{{meteoInfoActual.humidity}}%</td>
+                      </tr>
+                      <tr ng-hide="meteoInfoActual.winddir=='VRB'" class="info">
+                        <td>Best RWY:</td>
+                        <th>{{RWY}}</th>
+                      </tr>
+                      <tr>
+                        <td colspan="2" style="color: red; font-weight: bold">
+                          <p class="mb-2">
+                            Údaje na této stránce jsou pouze informativní !!!
+                          </p>
+                          <p>
+                            Nezbavují pilota povinnosti zjistit si aktuální stav
+                            !!!
+                          </p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="col-4 mt-3">
+                <img src="img/mapaLetisteRWY{{RWY}}.png" alt="mapa letiste" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- weather -->
+
+        <div
+          ng-show="viewMode==9"
+          class="row d-flex justify-content-center align-items-center h-100"
+        >
+          <div class="col-12">
+            <div class="card rounded-3 text-black">
+              <div class="row g-0">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="text-left col-2 mt-1 mb-5 pb-1">
+                      <button
+                        type="button"
+                        class="btn btn-outline-primary"
+                        ng-click="home()"
+                      >
+                        <span
+                          class="far fa-backspace"
+                          style="margin-right: 10px"
+                        ></span
+                        ><span></span>Zpět
+                      </button>
+                      <button
+                        ng-if="usr.admin == 1"
+                        class="btn btn-outline-primary"
+                        ng-click="exportToExcel('#tblUsers', 'Přehled uživatelů');"
+                        type="button"
+                      >
+                        <span
+                          class="far fa-file-excel"
+                          style="margin-right: 10px"
+                        ></span
+                        ><span></span>Export
+                      </button>
+                    </div>
+                    <div
+                      role="button"
+                      class="text-center col-10 mt-1 mb-5 pb-1"
+                      ng-click="refreshUsersOverview()"
+                    >
+                      <h1>Portál pilota - přehled uživatelů</h1>
+                    </div>
+                  </div>
+
+                  <div class="card-body p-md-5 mx-md-4">
+                    <table
+                      id="tblUsers"
+                      class="table table-bordered table-striped table-hover"
+                    >
+                      <thead class="table-primary">
+                        <tr>
+                          <th style="width: 2%"></th>
+                          <th style="width: 2%"></th>
+                          <th style="width: 2%"></th>
+                          <th style="width: 2%"></th>
+                          <th style="width: 2%">#</th>
+                          <th style="width: 33%">Email</th>
+                          <th>Uživatel</th>
+                          <th style="width: 33%">Číslo průkazu</th>
+                          <th style="width: 33%">Platnost průkazu</th>
+                          <th style="width: 33%">Platnost prohlídky</th>
+                          <th style="width: 33%">Kvalifikace</th>
+                          <th style="width: 33%">Stav konta</th>
+                          <th style="width: 33%">Za min.</th>
+                          <th style="width: 33%">Počet minut</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button
+                              ng-show="search.act==1"
+                              type="button button-sm"
+                              class="btn btn-outline-success"
+                              ng-click="search.act = 0"
+                            >
+                              <span class="fa fa-check-circle"></span>
+                            </button>
+                            <button
+                              ng-show="search.act!=1"
+                              type="button button-sm"
+                              class="btn btn-outline-default"
+                              ng-click="search.act = 1"
+                            >
+                              <span
+                                class="fa fa-regular fa-circle-xmark"
+                              ></span>
+                            </button>
+                          </td>
+                          <td colspan="4"></td>
+                          <td colspan="6">
+                            <input class="form-control" ng-model="search.e" />
+                          </td>
+                          <td>CZK</td>
+                          <td>CZK</td>
+                          <td></td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          ng-repeat="x in users | filter: filterUsers | orderBy : ['sn','fn']"
+                          ng-class="{'table-danger': x.accountCZK < 0}"
+                        >
+                          <td>
+                            <button
+                              ng-show="x.act==1"
+                              type="button button-sm"
+                              class="btn btn-outline-success"
+                              ng-click="updateAccountActive(x, 0)"
+                            >
+                              <span class="fa fa-check-circle"></span>
+                            </button>
+                            <button
+                              ng-show="x.act!=1"
+                              type="button button-sm"
+                              class="btn btn-outline-default"
+                              ng-click="updateAccountActive(x, 1)"
+                            >
+                              <span
+                                class="fa fa-regular fa-circle-xmark"
+                              ></span>
+                            </button>
+                          </td>
+                          <td>
+                            <button
+                              type="button button-sm"
+                              class="btn btn-primary"
+                              ng-click="updateAccount(x)"
+                            >
+                              Upravit
+                            </button>
+                          </td>
+                          <td>
+                            <button
+                              ng-click="showPaymentsOverview(x.e)"
+                              type="button"
+                              class="btn btn-outline-success"
+                            >
+                              Platby
+                            </button>
+                          </td>
+                          <td>
+                            <button
+                              ng-click="showFlightsOverview(x.e)"
+                              type="button"
+                              class="btn btn-outline-success"
+                            >
+                              Lety
+                            </button>
+                          </td>
+                          <td>{{$index + 1}}</td>
+                          <td style="white-space: nowrap">
+                            <button
+                              ng-if="usr.admin == 1"
+                              type="button button-sm"
+                              class="btn btn-outline-success"
+                              style="margin-right: 15px"
+                              ng-click="updateAccountEmail(x)"
+                            >
+                              <i class="fa-solid fa-user-pen"></i></button
+                            >{{x.e}}
+                          </td>
+                          <td style="white-space: nowrap">{{x.n}}</td>
+                          <td style="white-space: nowrap">
+                            {{x.AIRCRAFT_CATEGORY}} * {{x.cpp}}
+                          </td>
+                          <td>{{x.ppp}}</td>
+                          <td>{{x.plp}}</td>
+                          <td>{{x.qual}}</td>
+                          <td>{{x.accountCZK}}</td>
+                          <td>{{x.defaultPrice}}</td>
+                          <td>{{x.accountMinutes}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- users overview -->
+
+        <div
+          ng-show="viewMode==10"
+          ng-if="usr.admin == 1"
+          class="row d-flex justify-content-center align-items-center h-100"
+        >
+          <div class="col-10">
+            <div class="card rounded-3 text-black">
+              <div class="row g-0">
+                <div class="col-10 offset-1">
+                  <div class="row">
+                    <div
+                      class="text-left col-1 mt-1 mb-5 pb-1"
+                      ng-click="showPaymentsOverviewSimple();"
+                    >
+                      <button type="button" class="btn btn-outline-primary">
+                        Zpět
+                      </button>
+                    </div>
+                    <div class="text-center col-11 mt-1 mb-5 pb-1">
+                      <h1>Portál pilota - zadání platby</h1>
+                    </div>
+                  </div>
+                  <div class="card-body p-md-5 mx-md-4">
+                    <form>
+                      <div class="mb-2 row">
+                        <div class="col-12 form-floating">
+                          <!-- <input class="form-control" id="floatingPaymentEMAIL" placeholder="Email" ng-model="payment.USER_EMAIL">
+                          <label for="floatingPaymentEMAIL">Email</label> -->
+
+                          <div class="input-group">
+                            <div class="dropdown">
+                              <button
+                                ng-click="search.email = '';"
+                                class="btn btn-secondary dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuPaymentEMAIL"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                Výběr emailu zákazníka
+                              </button>
+                              <ul
+                                class="dropdown-menu scrollable-menu"
+                                aria-labelledby="dropdownMenuPaymentEMAIL"
+                              >
+                                <li
+                                  ng-repeat="e in userEmails |filter: filterEmails"
+                                >
+                                  <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="payment.USER_EMAIL = e.e;"
+                                    >{{e.e}} * {{e.n}}</a
+                                  >
+                                </li>
+                              </ul>
+                            </div>
+                            <input
+                              class="form-control"
+                              id="floatingPaymentEMAIL"
+                              placeholder="Email"
+                              ng-model="payment.USER_EMAIL"
+                              ng-readonly="usr.admin==0"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="mb-2 row">
+                        <div class="col-6 form-floating">
+                          <input
+                            type="date"
+                            class="form-control"
+                            id="floatingPaymentDatum"
+                            placeholder="Datum platby"
+                            ng-model="payment.d_dt"
+                          />
+                          <label for="floatingPaymentDatum">Datum platby</label>
+                        </div>
+                        <div class="col-6 form-floating">
+                          <input
+                            class="form-control"
+                            id="floatingAMOUNT"
+                            placeholder="Částka"
+                            ng-model="payment.AMOUNT"
+                          />
+                          <label for="floatingAMOUNT">Částka</label>
+                        </div>
+                      </div>
+                      <div class="mb-2 row">
+                        <div class="col-6 form-floating">
+                          <input
+                            class="form-control"
+                            id="floatingPaymentPAYMENT_TYPE"
+                            placeholder="Způsob platby"
+                            ng-model="payment.PAYMENT_TYPE"
+                          />
+                          <label for="floatingPaymentPAYMENT_TYPE"
+                            >Způsob platby</label
+                          >
+                        </div>
+                        <div class="col-6 form-floating">
+                          <input
+                            class="form-control"
+                            id="floatingPaymentOCUMENT"
+                            placeholder="Doklad"
+                            ng-model="payment.DOCUMENT"
+                          />
+                          <label for="floatingPaymentOCUMENT">Doklad</label>
+                        </div>
+                      </div>
+
+                      <div
+                        class="form-floating d-grid gap-2 mb-3"
+                        ng-click="LKMB_payment(payment)"
+                      >
+                        <button type="button" class="btn btn-outline-primary">
+                          Uložit
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- payment entry -->
+
+        <!-- https://jsfiddle.net/prtk/znbx32j1/1/ -->
+        <div
+          ng-show="viewMode==11"
+          class="row d-flex justify-content-center align-items-center h-100"
+        >
+          <div class="col-10">
+            <div class="card rounded-3 text-black">
+              <div class="row g-0">
+                <div class="col-10 offset-1">
+                  <div class="row">
+                    <div
+                      class="text-left col-1 mt-1 mb-5 pb-1"
+                      ng-click="showReservationsOverviewSimple();"
+                    >
+                      <button type="button" class="btn btn-outline-primary">
+                        Zpět
+                      </button>
+                    </div>
+                    <div class="text-center col-11 mt-1 mb-5 pb-1">
+                      <h1>Portál pilota - zadání rezervace</h1>
+                    </div>
+                  </div>
+                  <div class="card-body p-md-5 mx-md-4">
+                    <form>
+                      <div class="mb-2 row">
+                        <div class="col-6">
+                          <!-- <input class="form-control" id="floatingFlightEMAIL" placeholder="Email" ng-model="flight.USER_EMAIL" ng-readonly="usr.admin==0">
+                          <label for="floatingFlightEMAIL">Email</label> -->
+                          <div class="input-group">
+                            <div class="dropdown">
+                              <button
+                                ng-click="search.email = '';"
+                                class="btn btn-secondary dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuReservationEMAIL"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                Výběr emailu zákazníka
+                              </button>
+                              <ul
+                                ng-if="((usr.admin==1)||(usr.adminReservation == 1))&&(reservation.STATUS==0)"
+                                class="dropdown-menu scrollable-menu"
+                                aria-labelledby="dropdownMenuReservationEMAIL"
+                              >
+                                <li
+                                  ng-repeat="e in userEmails | filter: filterEmails"
+                                >
+                                  <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="reservation.USER_EMAIL=e.e;"
+                                    >{{e.e}} * {{e.n}}</a
+                                  >
+                                </li>
+                              </ul>
+                            </div>
+                            <input
+                              class="form-control"
+                              id="floatingReservationEMAIL"
+                              placeholder="Email"
+                              ng-model="reservation.USER_EMAIL"
+                              readonly
+                            />
+                          </div>
+                        </div>
+                        <div class="col-6 form-floating">
+                          <div class="input-group">
+                            <div class="dropdown">
+                              <button
+                                class="btn btn-secondary dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuImatrikulace"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                Výběr imatrikulace
+                              </button>
+                              <ul
+                                ng-if="((usr.admin==1)||(usr.adminReservation == 1))&&(reservation.STATUS==0)"
+                                class="dropdown-menu scrollable-menu"
+                                aria-labelledby="dropdownMenuImatrikulace"
+                              >
+                                <li ng-repeat="x in listAircraft">
+                                  <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="reservation.imatrikulace = x.imatrikulace;"
+                                    >{{x.imatrikulace}}</a
+                                  >
+                                </li>
+                              </ul>
+                            </div>
+                            <input
+                              class="form-control"
+                              ng-model="reservation.imatrikulace"
+                              readonly
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="mb-2 row">
+                        <div class="col-6 form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="floatingReservationDatum"
+                            placeholder="Reservation date"
+                            ng-model="reservation.d"
+                            readonly
+                          />
+                          <label for="floatingReservationDatum"
+                            >Datum letu</label
+                          >
+                        </div>
+                        <div class="col-3 form-floating">
+                          <div class="input-group">
+                            <div class="dropdown">
+                              <button
+                                class="btn btn-secondary dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuReservationTF"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                Čas od
+                              </button>
+                              <ul
+                                ng-if="(reservation.STATUS==0)"
+                                class="dropdown-menu scrollable-menu"
+                                aria-labelledby="dropdownMenuReservationTF"
+                              >
+                                <li
+                                  ng-repeat="tf in reservation.timeFromDropdown"
+                                >
+                                  <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="reservation.t_from = tf;"
+                                    >{{tf}}</a
+                                  >
+                                </li>
+                              </ul>
+                            </div>
+                            <input
+                              class="form-control"
+                              ng-model="reservation.t_from"
+                              readonly
+                            />
+                          </div>
+
+                          <!-- <input type="time" class="form-control" id="floatingReservationTimeFrom" placeholder="Reservation time from" 
+                            ng-model="reservation.t_from" min="05:00" max="21:30" step="1800" pattern="[0-9]{2}:[0-9]{2}" required>
+                          <label for="floatingReservationTimeFrom">Čas od</label> -->
+                        </div>
+                        <div class="col-3 form-floating">
+                          <div class="input-group">
+                            <div class="dropdown">
+                              <button
+                                class="btn btn-secondary dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuReservationTT"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                Čas do
+                              </button>
+                              <ul
+                                ng-if="(reservation.STATUS==0)"
+                                class="dropdown-menu scrollable-menu"
+                                aria-labelledby="dropdownMenuReservationTT"
+                              >
+                                <li
+                                  ng-repeat="tt in reservation.timeToDropdown"
+                                >
+                                  <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="reservation.t_to = tt;"
+                                    >{{tt}}</a
+                                  >
+                                </li>
+                              </ul>
+                            </div>
+                            <input
+                              class="form-control"
+                              ng-model="reservation.t_to"
+                              readonly
+                            />
+                          </div>
+
+                          <!-- <input type="time" class="form-control" id="floatingReservationTimeTo" placeholder="Reservation time to" 
+                            ng-model="reservation.t_to" min="05:30" max="22:00" step="1800" pattern="[0-9]{2}:[0-9]{2}" required>
+                          <label for="floatingReservationTimeTo">Čas do</label> -->
+                        </div>
+                      </div>
+
+                      <div class="mb-2 row">
+                        <div class="col-6 form-floating">
+                          <input
+                            class="form-control"
+                            id="floatingReservationLanding"
+                            placeholder="Airfield"
+                            ng-model="reservation.airfield"
+                            ng-readonly="(reservation.STATUS==1)"
+                          />
+                          <label for="floatingReservationLanding"
+                            >Letiště</label
+                          >
+                        </div>
+                        <div class="col-6 form-floating">
+                          <div class="input-group">
+                            <div class="dropdown">
+                              <button
+                                class="btn btn-secondary dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuReservationTYPE"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                Výběr typu letu
+                              </button>
+                              <ul
+                                ng-if="(reservation.STATUS==0)"
+                                class="dropdown-menu scrollable-menu"
+                                aria-labelledby="dropdownMenuReservationTYPE"
+                              >
+                                <li>
+                                  <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="reservation.instruktor = 0;reservation.flightType = 'půjčovna';reservation.instruktorName = '';"
+                                    >půjčovna</a
+                                  >
+                                  <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="reservation.instruktor = 1;reservation.flightType = 'výcvikový let s instruktorem';"
+                                    >výcvikový let s instruktorem</a
+                                  >
+                                  <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="reservation.instruktor = 1;reservation.flightType = 'kondiční s instruktorem';"
+                                    >kondiční s instruktorem</a
+                                  >
+                                  <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="reservation.instruktor = 1;reservation.flightType = 'pilotní zkoušky s inspektorem';"
+                                    >pilotní zkoušky s inspektorem</a
+                                  >
+                                  <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="reservation.instruktor = 0;reservation.flightType = 'vleky AK';reservation.instruktorName = '';"
+                                    >vleky AK</a
+                                  >
+                                  <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="reservation.instruktor = 0;reservation.flightType = 'placený let';reservation.instruktorName = '';"
+                                    >placený let</a
+                                  >
+                                  <a
+                                    ng-if="usr.admin == 1"
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="reservation.instruktor = 0;reservation.flightType = 'servisní let';reservation.instruktorName = '';"
+                                    >servisní let</a
+                                  >
+                                  <a
+                                    ng-if="usr.admin == 1"
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="reservation.instruktor = 0;reservation.flightType = 'zálet';reservation.instruktorName = '';"
+                                    >zálet</a
+                                  >
+                                  <a
+                                    ng-if="usr.admin == 1"
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="reservation.instruktor = 0;reservation.flightType = 'vyhlídkový let';reservation.instruktorName = '';"
+                                    >vyhlídkový let</a
+                                  >
+                                  <a
+                                    ng-if="usr.admin == 1"
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="fillFullDayReservation_Aircraft('blokace letadla', 'DAY')"
+                                    >blokace letadla na celý den</a
+                                  >
+                                  <!-- <a ng-if="usr.admin == 1" class="dropdown-item" href="#" ng-click="fillFullDayReservation_Aircraft('blokace letadla', 'WEEK')">blokace letadla na celý týden</a> -->
+                                  <a
+                                    ng-if="usr.admin == 1"
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="fillFullDayReservation_Instruktor('blokace instruktora', 'DAY')"
+                                    >blokace instruktora na celý den</a
+                                  >
+                                </li>
+                              </ul>
+                            </div>
+                            <input
+                              class="form-control"
+                              id="floatingReservationType"
+                              ng-model="reservation.flightType"
+                              readonly
+                            />
+
+                            <div class="dropdown">
+                              <button
+                                class="btn dropdown-toggle"
+                                ng-class="{'btn-danger': (reservation.instruktor==0),'btn-success': (reservation.instruktor==1)}"
+                                type="button"
+                                id="dropdownMenuReservationINS"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                Instruktor
+                              </button>
+                              <ul
+                                ng-if="(reservation.STATUS==0)"
+                                ng-show="reservation.instruktor == 1"
+                                class="dropdown-menu scrollable-menu"
+                                aria-labelledby="dropdownMenuReservationINS"
+                              >
+                                <li
+                                  ng-repeat="instruktorName in listInstruktor"
+                                >
+                                  <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="reservation.instruktorName = instruktorName;"
+                                    >{{instruktorName}}</a
+                                  >
+                                </li>
+                              </ul>
+                            </div>
+                            <input
+                              class="form-control"
+                              ng-model="reservation.instruktorName"
+                              readonly
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="mb-2 row">
+                        <div class="col-12 form-floating">
+                          <input
+                            class="form-control"
+                            id="floatingReservationNote"
+                            placeholder="Poznámka"
+                            ng-model="reservation.note"
+                          />
+                          <label for="floatingReservationNote">Poznámka</label>
+                        </div>
+                      </div>
+                    </form>
+
+                    <div class="mb-2 row">
+                      <div
+                        ng-if="(usr.admin == 1)||(usr.adminReservation == 1)"
+                        ng-show="reservation.STATUS==1"
+                        class="form-floating d-grid gap-2 mb-3 col-3"
+                        ng-click="LKMB_reservation_status(reservation, 0)"
+                      >
+                        <button type="button" class="btn btn-outline-danger">
+                          Zrušit schválení
+                        </button>
+                      </div>
+                      <div
+                        ng-if="(usr.admin == 1)||(usr.adminReservation == 1)"
+                        ng-show="(reservation.STATUS==0)&&(reservation.ID!=0)"
+                        class="form-floating d-grid gap-2 mb-3 col-3"
+                        ng-click="LKMB_reservation_status(reservation, 1)"
+                      >
+                        <button type="button" class="btn btn-outline-success">
+                          Schválit
+                        </button>
+                      </div>
+                      <div
+                        class="form-floating d-grid gap-2 mb-3 col-3"
+                        ng-show="(reservation.ID!=0)"
+                        ng-click="showReservationDeleteQuestion(reservation);"
+                      >
+                        <button type="button" class="btn btn-danger">
+                          Smazat
+                        </button>
+                      </div>
+                      <div
+                        class="form-floating d-grid gap-2 mb-3 col-3"
+                        ng-hide="(reservation.instruktor == 1)&&(reservation.instruktorName == '')"
+                        ng-click="LKMB_reservation(reservation)"
+                      >
+                        <button type="button" class="btn btn-outline-primary">
+                          Uložit
+                        </button>
+                      </div>
+                      <div
+                        class="form-floating d-grid gap-2 mb-3 col-3"
+                        ng-click="showReservationsOverviewSimple();"
+                      >
+                        <button type="button" class="btn btn-info">
+                          Zavřít
+                        </button>
+                      </div>
+                    </div>
+
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      ng-show="reservation.err==1"
+                    >
+                      {{reservation.errMsg}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- reservation entry -->
+
+        <div
+          ng-show="viewMode==12"
+          class="row d-flex justify-content-center align-items-center h-100"
+        >
+          <div
+            class="col-12"
+            ng-style="{'min-width: 1500px;': viewMode==12, 'min-width: 100px;': viewMode!=12}"
+          >
+            <div class="card rounded-3 text-black">
+              <div class="row g-0">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="text-left col-1 mt-1 mb-5 pb-1">
+                      <button
+                        type="button"
+                        class="btn btn-outline-primary"
+                        ng-click="home()"
+                      >
+                        <span
+                          class="far fa-backspace"
+                          style="margin-right: 10px"
+                        ></span
+                        ><span></span>Zpět
+                      </button>
+                    </div>
+                    <div
+                      role="button"
+                      class="text-center col-11 mt-1 mb-5 pb-1"
+                      ng-click="refreshReservationsOverview()"
+                    >
+                      <h1>Portál pilota - přehled rezervací</h1>
+                    </div>
+                  </div>
+
+                  <div class="card-body p-md-5 mx-md-4">
+                    <div class="mb-2 row">
+                      <div class="col">
+                        <div class="float-start">
+                          <div class="input-group">
+                            <div class="dropdown">
+                              <button
+                                ng-click="search.week = '';scrollToActualValue('#weeksDropdown', actualWeek.WK)"
+                                class="btn btn-secondary dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuReservationWEEK"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                Výběr týdne:
+                              </button>
+                              <ul
+                                id="weeksDropdown"
+                                class="dropdown-menu scrollable-menu"
+                                aria-labelledby="dropdownMenuReservationWEEK"
+                              >
+                                <li
+                                  ng-repeat="wk in listWeeks"
+                                  ng-class="{'active': wk.WK == actualWeek.WK}"
+                                >
+                                  <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="refreshReservations(wk);"
+                                    >{{wk.TYDEN}}</a
+                                  >
+                                </li>
+                              </ul>
+                            </div>
+                            <input
+                              class="form-control"
+                              placeholder="Tyden"
+                              ng-model="actualWeek.TYDEN"
+                              ng-readonly="true"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col">
+                        <strong style="font-size: 150%"
+                          >{{actualWeek.days[actualWeek.d].d_DMY}}</strong
+                        >
+                      </div>
+
+                      <div class="col">
+                        <div class="float-end">
+                          <div class="input-group" style="margin-bottom: 10px">
+                            <span class="input-group-btn">
+                              <button
+                                class="btn"
+                                ng-class="{'btn-outline-primary': !(actualWeek.d == 1), 'btn-primary': actualWeek.d == 1}"
+                                ng-click="refreshReservations_setDay(1)"
+                                type="button"
+                              >
+                                <span>Po</span>
+                              </button>
+                              <button
+                                class="btn"
+                                ng-class="{'btn-outline-primary': !(actualWeek.d == 2), 'btn-primary': actualWeek.d == 2}"
+                                ng-click="refreshReservations_setDay(2)"
+                                type="button"
+                              >
+                                <span>Út</span>
+                              </button>
+                              <button
+                                class="btn"
+                                ng-class="{'btn-outline-primary': !(actualWeek.d == 3), 'btn-primary': actualWeek.d == 3}"
+                                ng-click="refreshReservations_setDay(3)"
+                                type="button"
+                              >
+                                <span>St</span>
+                              </button>
+                              <button
+                                class="btn"
+                                ng-class="{'btn-outline-primary': !(actualWeek.d == 4), 'btn-primary': actualWeek.d == 4}"
+                                ng-click="refreshReservations_setDay(4)"
+                                type="button"
+                              >
+                                <span>Čt</span>
+                              </button>
+                              <button
+                                class="btn"
+                                ng-class="{'btn-outline-primary': !(actualWeek.d == 5), 'btn-primary': actualWeek.d == 5}"
+                                ng-click="refreshReservations_setDay(5)"
+                                type="button"
+                              >
+                                <span>Pá</span>
+                              </button>
+                              <button
+                                class="btn"
+                                ng-class="{'btn-outline-primary': !(actualWeek.d == 6), 'btn-primary': actualWeek.d == 6}"
+                                ng-click="refreshReservations_setDay(6)"
+                                type="button"
+                              >
+                                <span>So</span>
+                              </button>
+                              <button
+                                class="btn"
+                                ng-class="{'btn-outline-primary': !(actualWeek.d == 7), 'btn-primary': actualWeek.d == 7}"
+                                ng-click="refreshReservations_setDay(7)"
+                                type="button"
+                              >
+                                <span>Ne</span>
+                              </button>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="mb-2 row">
+                      <table
+                        id="tblReservationsAircraft"
+                        class="table table-bordered table-striped table-hover"
+                        style="max-width: fit-content"
+                      >
+                        <thead class="table-primary">
+                          <tr>
+                            <th style="min-width: 200px; max-width: 200px">
+                              Imatrikulace
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              05
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              06
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              07
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              08
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              09
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              10
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              11
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              12
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              13
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              14
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              15
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              16
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              17
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              18
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              19
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              20
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              21
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr
+                            ng-repeat="x in listAircraft"
+                            style="height: 1px"
+                            ng-hide="(usr.admin!=1)&&(x.imatrikulace=='OK-XXX')"
+                          >
+                            <td>{{x.imatrikulace}}</td>
+                            <td
+                              class="p-0 h-100"
+                              ng-repeat="hh in reservationsMapHrs"
+                              colspan="{{reservationsMap[x.imatrikulace][hh].colspan}}"
+                              ng-if="reservationsMap[x.imatrikulace][hh].firstHHMM == hh"
+                            >
+                              <div
+                                ng-show="reservationsMap[x.imatrikulace][hh].STATUS == 11"
+                                role="button"
+                                class="bg-secondary text-white p-3 h-100 cell-div"
+                                data-toggle="tooltip"
+                                data-placement="bottom"
+                                title="{{reservationsMap[x.imatrikulace][hh].tooltip}}"
+                              >
+                                <i
+                                  style="font-size: 0.75em"
+                                  class="fas fa-check small-font-size"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].colspan==1"
+                                ></i>
+                                <i
+                                  class="fas fa-check small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].colspan!=1"
+                                ></i>
+                                <i
+                                  class="fas fa-user-cog small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].instruktor==1"
+                                ></i>
+                                <i
+                                  class="fas fa-camera small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].eye_icon==1"
+                                ></i>
+                                <i
+                                  class="fas fa-tools small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].servis_icon==1"
+                                ></i>
+                                <i
+                                  class="fas fa-eye small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].lend_icon==1"
+                                ></i>
+                                <span
+                                  >{{reservationsMap[x.imatrikulace][hh].preview}}</span
+                                >
+                              </div>
+                              <div
+                                ng-show="reservationsMap[x.imatrikulace][hh].STATUS == 10"
+                                role="button"
+                                class="bg-secondary text-white p-3 h-100 cell-div"
+                                data-toggle="tooltip"
+                                data-placement="bottom"
+                                title="{{reservationsMap[x.imatrikulace][hh].tooltip}}"
+                              >
+                                <i
+                                  style="font-size: 0.75em"
+                                  class="fas fa-asterisk small-font-size"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].colspan==1"
+                                ></i>
+                                <i
+                                  class="fas fa-asterisk small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].colspan!=1"
+                                ></i>
+                                <i
+                                  class="fas fa-user-cog small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].instruktor==1"
+                                ></i>
+                                <i
+                                  class="fas fa-camera small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].eye_icon==1"
+                                ></i>
+                                <i
+                                  class="fas fa-tools small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].servis_icon==1"
+                                ></i>
+                                <i
+                                  class="fas fa-eye small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].lend_icon==1"
+                                ></i>
+                                <span
+                                  >{{reservationsMap[x.imatrikulace][hh].preview}}</span
+                                >
+                              </div>
+
+                              <div
+                                ng-show="reservationsMap[x.imatrikulace][hh].STATUS == 1"
+                                role="button"
+                                class="bg-success text-white p-3 h-100 cell-div"
+                                ng-click="showReservationEntry(reservationsMap[x.imatrikulace][hh])"
+                                data-toggle="tooltip"
+                                data-placement="bottom"
+                                title="{{reservationsMap[x.imatrikulace][hh].tooltip}}"
+                              >
+                                <i
+                                  style="font-size: 0.75em"
+                                  class="fas fa-check-circle small-font-size"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].colspan==1"
+                                ></i>
+                                <span
+                                  class="fas fa-check-circle small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].colspan!=1"
+                                ></span>
+                                <i
+                                  class="fas fa-user-cog small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].instruktor==1"
+                                ></i>
+                                <i
+                                  class="fas fa-camera small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].eye_icon==1"
+                                ></i>
+                                <i
+                                  class="fas fa-tools small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].servis_icon==1"
+                                ></i>
+                                <i
+                                  class="fas fa-eye small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].lend_icon==1"
+                                ></i>
+                                <span
+                                  >{{reservationsMap[x.imatrikulace][hh].preview}}</span
+                                >
+                              </div>
+                              <div
+                                ng-show="reservationsMap[x.imatrikulace][hh].STATUS == 0"
+                                role="button"
+                                class="bg-info text-white p-3 h-100 cell-div"
+                                ng-click="showReservationEntry(reservationsMap[x.imatrikulace][hh])"
+                                data-toggle="tooltip"
+                                data-placement="bottom"
+                                title="{{reservationsMap[x.imatrikulace][hh].tooltip}}"
+                              >
+                                <i
+                                  style="font-size: 0.75em"
+                                  class="fas fa-asterisk small-font-size"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].colspan==1"
+                                ></i>
+                                <span
+                                  class="fas fa-asterisk small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].colspan!=1"
+                                ></span>
+                                <i
+                                  class="fas fa-user-cog small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].instruktor==1"
+                                ></i>
+                                <i
+                                  class="fas fa-camera small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].eye_icon==1"
+                                ></i>
+                                <i
+                                  class="fas fa-tools small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].servis_icon==1"
+                                ></i>
+                                <i
+                                  class="fas fa-eye small-font-size cell-i"
+                                  ng-if="reservationsMap[x.imatrikulace][hh].lend_icon==1"
+                                ></i>
+                                <span
+                                  >{{reservationsMap[x.imatrikulace][hh].preview}}</span
+                                >
+                              </div>
+
+                              <div
+                                ng-show="reservationsMap[x.imatrikulace][hh].STATUS == -1"
+                                class="bg-danger text-white p-3 h-100"
+                              >
+                                <i
+                                  style="font-size: 0.75em"
+                                  class="fa fa-ban small-font-size"
+                                ></i>
+                              </div>
+                              <div
+                                ng-show="reservationsMap[x.imatrikulace][hh].STATUS == -2"
+                                role="button"
+                                class="p-3 h-100"
+                                ng-click="showReservationEntry(undefined, x.imatrikulace, hh)"
+                              >
+                                <i
+                                  style="font-size: 0.75em"
+                                  class="fas fa-circle small-font-size"
+                                ></i>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <table
+                        id="tblReservationsInstruktor"
+                        class="table table-bordered table-striped table-hover"
+                        style="max-width: fit-content"
+                      >
+                        <thead class="table-primary">
+                          <tr>
+                            <th style="min-width: 200px; max-width: 200px">
+                              Instruktor
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              05
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              06
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              07
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              08
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              09
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              10
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              11
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              12
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              13
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              14
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              15
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              16
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              17
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              18
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              19
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              20
+                            </th>
+                            <th
+                              colspan="2"
+                              style="width: 33%; text-align: center"
+                            >
+                              21
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr
+                            ng-repeat="x in listInstruktor"
+                            style="height: 1px"
+                          >
+                            <td>{{x}}</td>
+                            <td
+                              class="p-0 h-100"
+                              ng-repeat="hh in reservationsMapHrs"
+                              colspan="{{reservationsMap[x][hh].colspan}}"
+                              ng-if="reservationsMap[x][hh].firstHHMM == hh"
+                            >
+                              <div
+                                ng-show="reservationsMap[x][hh].STATUS == 11"
+                                role="button"
+                                class="bg-secondary text-white p-3 h-100 cell-div"
+                                data-toggle="tooltip"
+                                data-placement="bottom"
+                                title="{{reservationsMap[x][hh].tooltipInstruktor}}"
+                              >
+                                <i
+                                  class="fas fa-check small-font-size cell-i"
+                                ></i>
+                                <span
+                                  >{{reservationsMap[x][hh].previewInstruktor}}</span
+                                >
+                              </div>
+                              <div
+                                ng-show="reservationsMap[x][hh].STATUS == 10"
+                                role="button"
+                                class="bg-secondary text-white p-3 h-100 cell-div"
+                                data-toggle="tooltip"
+                                data-placement="bottom"
+                                title="{{reservationsMap[x][hh].tooltipInstruktor}}"
+                              >
+                                <i
+                                  class="fa fa-asterisk small-font-size cell-i"
+                                ></i>
+                                <span
+                                  >{{reservationsMap[x][hh].previewInstruktor}}</span
+                                >
+                              </div>
+
+                              <div
+                                ng-show="reservationsMap[x][hh].STATUS == 1"
+                                role="button"
+                                class="bg-success text-white p-3 h-100 cell-div"
+                                data-toggle="tooltip"
+                                data-placement="bottom"
+                                title="{{reservationsMap[x][hh].tooltipInstruktor}}"
+                                ng-click="showReservationEntry(reservationsMap[x][hh])"
+                              >
+                                <i
+                                  class="fas fa-check-circle small-font-size cell-i"
+                                ></i>
+                                <span
+                                  >{{reservationsMap[x][hh].previewInstruktor}}</span
+                                >
+                              </div>
+                              <div
+                                ng-show="reservationsMap[x][hh].STATUS == 0"
+                                role="button"
+                                class="bg-info text-white p-3 h-100 cell-div"
+                                data-toggle="tooltip"
+                                data-placement="bottom"
+                                title="{{reservationsMap[x][hh].tooltipInstruktor}}"
+                                ng-click="showReservationEntry(reservationsMap[x][hh])"
+                              >
+                                <i
+                                  class="fa fa-asterisk small-font-size cell-i"
+                                ></i>
+                                <span
+                                  >{{reservationsMap[x][hh].previewInstruktor}}</span
+                                >
+                              </div>
+
+                              <!-- <div ng-show="reservationsMap[x][hh].STATUS == -1" class="bg-danger text-white p-3 h-100">
+                                <i style="font-size: 0.75em;" class="fa fa-ban small-font-size"></i>
+                              </div> -->
+                              <div
+                                ng-show="(reservationsMap[x][hh].STATUS == -1)||(reservationsMap[x][hh].STATUS == -2)"
+                                class="p-3 h-100"
+                              >
+                                <i
+                                  style="font-size: 0.75em"
+                                  class="fas fa-circle small-font-size"
+                                ></i>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- reservations overview -->
+
+        <div
+          ng-show="viewMode==13"
+          ng-if="usr.admin == 1"
+          class="row d-flex justify-content-center align-items-center h-100"
+        >
+          <div class="col-12">
+            <div class="card rounded-3 text-black">
+              <div class="row g-0">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="text-left col-1 mt-1 mb-5 pb-1">
+                      <button
+                        type="button"
+                        class="btn btn-outline-primary"
+                        ng-click="home()"
+                      >
+                        <span
+                          class="far fa-backspace"
+                          style="margin-right: 10px"
+                        ></span
+                        ><span></span>Zpět
+                      </button>
+                    </div>
+                    <div
+                      role="button"
+                      class="text-center col-11 mt-1 mb-5 pb-1"
+                      ng-click="refreshFailuresOverview()"
+                    >
+                      <h1>Portál pilota - přehled závad</h1>
+                    </div>
+                  </div>
+
+                  <div class="card-body p-md-5 mx-md-4">
+                    <table
+                      class="table table-bordered table-striped table-hover"
+                    >
+                      <thead class="table-primary">
+                        <tr>
+                          <th style="width: 3%">
+                            <button
+                              ng-if="usr.admin == 1"
+                              type="button button-xs"
+                              class="btn btn-success"
+                              ng-click="showFailureEntry()"
+                            >
+                              <span class="fa fa-plus"></span>
+                            </button>
+                          </th>
+                          <th style="width: 3%">#</th>
+                          <th style="width: 3%">Datum</th>
+                          <th style="width: 33%">Imatrikulace</th>
+                          <th style="width: 33%">Popis</th>
+                          <th style="width: 33%"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          ng-repeat="x in failures | filter: filterFailures | orderBy : ['-dYMD']"
+                        >
+                          <td>
+                            <button
+                              type="button button-xs"
+                              class="btn btn-primary"
+                              ng-click="showFailureEntry(x)"
+                            >
+                              <span class="fa fa-edit"></span>
+                            </button>
+                          </td>
+                          <td>{{$index + 1}}</td>
+                          <td>{{x.d}}</td>
+                          <td>{{x.IMATRIKULACE}}</td>
+                          <td>{{x.NOTE}}</td>
+                          <td>
+                            <button
+                              type="button button-xs"
+                              ng-if="(x.SOLVED == 0)"
+                              class="btn btn-default"
+                              ng-click="LKMB_failure_solve(x, 1)"
+                            >
+                              <span
+                                class="fa fa-regular fa-circle-xmark"
+                              ></span>
+                            </button>
+                            <button
+                              type="button button-xs"
+                              ng-if="(x.SOLVED == 1)"
+                              class="btn btn-success"
+                              ng-click="LKMB_failure_solve(x, 0)"
+                            >
+                              <span class="fa fa-check"></span>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- failures overview -->
+
+        <div
+          ng-show="viewMode==14"
+          ng-if="usr.admin == 1"
+          class="row d-flex justify-content-center align-items-center h-100"
+        >
+          <div class="col-10">
+            <div class="card rounded-3 text-black">
+              <div class="row g-0">
+                <div class="col-10 offset-1">
+                  <div class="row">
+                    <div
+                      class="text-left col-1 mt-1 mb-5 pb-1"
+                      ng-click="showFailuresOverview();"
+                    >
+                      <button type="button" class="btn btn-outline-primary">
+                        Zpět
+                      </button>
+                    </div>
+                    <div class="text-center col-11 mt-1 mb-5 pb-1">
+                      <h1>Portál pilota - zadání závady</h1>
+                    </div>
+                  </div>
+                  <div class="card-body p-md-5 mx-md-4">
+                    <form>
+                      <div class="mb-2 row">
+                        <div class="col-12 form-floating">
+                          <div class="input-group">
+                            <div class="dropdown">
+                              <button
+                                class="btn btn-secondary dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuImatrikulace"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                Výběr imatrikulace
+                              </button>
+                              <ul
+                                class="dropdown-menu scrollable-menu"
+                                aria-labelledby="dropdownMenuImatrikulace"
+                              >
+                                <li ng-repeat="x in listAircraft">
+                                  <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    ng-click="failure.IMATRIKULACE = x.imatrikulace;"
+                                    >{{x.imatrikulace}}</a
+                                  >
+                                </li>
+                              </ul>
+                            </div>
+                            <input
+                              class="form-control"
+                              ng-model="failure.IMATRIKULACE"
+                              readonly
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="mb-2 row">
+                        <div class="col-6 form-floating">
+                          <input
+                            type="date"
+                            class="form-control"
+                            id="floatingFailureDatum"
+                            placeholder="Datum závady"
+                            ng-model="failure.d_dt"
+                          />
+                          <label for="floatingFailureDatum">Datum závady</label>
+                        </div>
+                        <div class="col-6 form-floating">
+                          <input
+                            class="form-control"
+                            id="floatingFailurePRICE"
+                            placeholder="Částka"
+                            ng-model="failure.PRICE"
+                          />
+                          <label for="floatingFailurePRICE">Částka</label>
+                        </div>
+                      </div>
+                      <div class="mb-2 row">
+                        <div class="col-12 form-floating">
+                          <input
+                            class="form-control"
+                            id="floatingFailureNOTE"
+                            placeholder="Poznámka"
+                            ng-model="failure.NOTE"
+                          />
+                          <label for="floatingFailureNOTE">Poznámka</label>
+                        </div>
+                      </div>
+
+                      <div
+                        class="form-floating d-grid gap-2 mb-3"
+                        ng-click="LKMB_failure(failure)"
+                      >
+                        <button type="button" class="btn btn-outline-primary">
+                          Uložit
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- failure entry -->
+
+        <div
+          id="divDialogYesNo"
+          class="modal"
+          role="dialog"
+          data-keyboard="false"
+        >
+          <div class="modal-dialog modal-50pct-width">
+            <div class="modal-content">
+              <div class="modal-header">
+                <div class="row">
+                  <div class="col-12">
+                    <h3 ng-bind="dialogHeader"></h3>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-body">
+                <div class="form-group center-block row">
+                  <div class="col-sm-6 col-sm-offset-3">
+                    <span ng-bind="dialogQuestion"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  ng-show="dialogHeader == ''"
+                  type="button"
+                  ng-click="dialogQuestion = '';closeModal_Over_Modal('#divDialogYesNo')"
+                  class="btn btn-primary btn-sm"
+                >
+                  <span class="fa fa-check" style="margin-right: 10px"></span>OK
+                </button>
+                <button
+                  ng-show="dialogHeader != ''"
+                  type="button"
+                  ng-click="akcePodleDialogu(dialogAction)"
+                  class="btn btn-success btn-sm"
+                >
+                  <span class="fa fa-check" style="margin-right: 10px"></span
+                  >Ano
+                </button>
+                <button
+                  ng-show="dialogHeader != ''"
+                  type="button"
+                  ng-click="closeModal_Over_Modal('#divDialogYesNo')"
+                  class="btn btn-danger btn-sm"
+                >
+                  <span class="fa fa-remove" style="margin-right: 10px"></span
+                  >Ne
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- .90pct -->
+        </div>
+        <!-- divDialogYesNo -->
+      </div>
+    </section>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="text/javascript">
+      //<![CDATA[
+
+      // var weekpicker, start_date, end_date;
+
+      // function set_week_picker(date) {
+      //     start_date = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay());
+      //     end_date = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 6);
+      //     weekpicker.datepicker('update', start_date);
+      //     weekpicker.val((start_date.getMonth() + 1) + '/' + start_date.getDate() + '/' + start_date.getFullYear() + ' - ' + (end_date.getMonth() + 1) + '/' + end_date.getDate() + '/' + end_date.getFullYear());
+      // }
+      // $(document).ready(function() {
+      //     weekpicker = $('.week-picker');
+      //     console.log(weekpicker);
+      //     weekpicker.datepicker({
+      //         autoclose: true,
+      //         forceParse: false,
+      //         container: '#week-picker-wrapper',
+      //     }).on("changeDate", function(e) {
+      //         set_week_picker(e.date);
+      //     });
+      //     $('.week-prev').on('click', function() {
+      //         var prev = new Date(start_date.getTime());
+      //         prev.setDate(prev.getDate() - 1);
+      //         set_week_picker(prev);
+      //     });
+      //     $('.week-next').on('click', function() {
+      //         var next = new Date(end_date.getTime());
+      //         next.setDate(next.getDate() + 1);
+      //         set_week_picker(next);
+      //     });
+      //     set_week_picker(new Date);
+      // });
+
+      //]]>
+    </script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
